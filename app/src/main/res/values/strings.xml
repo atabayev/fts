@@ -1,0 +1,94 @@
+<resources>
+    <string name="app_name">Fast Translate System</string>
+    <string name="btn_gallery">Галерея</string>
+    <string name="btn_docs">Документы</string>
+    <string name="btn_lang_select">Выберите языки перевода</string>
+    <string name="enter_page_count">Введите коливество страниц </string>
+    <string name="btn_confirm">Подтвердить</string>
+    <string name="select_lang">Выберите язык</string>
+    <string name="btn_order">Оформить заказ</string>
+    <string name="menu_sign_in">Вход</string>
+    <string name="menu_sign_out">Выход</string>
+    <string name="tv_lang">Язык перевода</string>
+    <string name="tv_pages">Количество страниц</string>
+    <string name="tv_order_is_processed">Ваш заказ находится в обработке!</string>
+    <string name="tv_orders_id">ID Вашего заказа: </string>
+    <string name="btn_image_close">закрыть</string>
+    <string name="registration">РЕГИСТРАЦИЯ</string>
+    <string name="enter">Войти</string>
+    <string name="tel_number">Номер телефона</string>
+    <string name="name">Имя</string>
+    <string name="surname">Фамилия</string>
+    <string name="email">Электронный адрес</string>
+    <string name="create_account">Создать аккаунт</string>
+    <string name="logo">Логотип</string>
+    <string name="sw_remember">Запомнить  </string>
+
+    <string name="invalid_login">Введенный номер не зарегестрирован!</string>
+    <string name="cant_create_acc">Не удалось создать аккаунт, попробуйте позже.</string>
+    <string name="reg_record_exists">Аккаунт с данным номером телефона зарегестрирован!</string>
+    <string name="cant_send_data">Извините. Не получилось отправить данные. Попробуйте позже.</string>
+    <string name="error_send">Ошибка передачи данных</string>
+    <string name="auth_false">Данный номер не зарегестрирован!</string>
+    <string name="inet_off">Нет подключения к интернету!</string>
+    <string name="select_file_to_send">Выберите файлы для отправки</string>
+    <string name="unknown_client">Отказано в доступе</string>
+    <string name="enter_phone_num">Введите номер телефона</string>
+
+    <string name="tt_select_language">"Выберите язык перевода"</string>
+    <string name="tt_select_page_count">"Выберите количество страниц"</string>
+    <string name="tt_select_images">"Выберите изображения для загрузки и отправки"</string>
+    <string name="tt_select_documents">"или текстовые документы"</string>
+    <string name="tt_btn_confirm">"и в конце подтвердите Ваш выбор!"</string>
+    <string name="field_error">Ошибка передачи полей</string>
+
+    <string name="lang_from_kz">с Казахского</string>
+    <string name="lang_from_ru">с Русского</string>
+    <string name="lang_from_en">с Английского</string>
+    <string name="lang_from_ko">с Корейского</string>
+    <string name="lang_from_ch">с Китайского</string>
+    <string name="lang_to_kz">на Казахский</string>
+    <string name="lang_to_ru">на Русский</string>
+    <string name="lang_to_en">на Английский</string>
+    <string name="lang_to_ko">на Корейский</string>
+    <string name="lang_to_ch">на Китайский</string>
+
+    <string name="title_activity_fullscreen">FullscreenActivity</string>
+    <string name="title_activity_login">Sign in</string>
+    <string name="title_activity_order_accepted">OrderAcceptedActivity</string>
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions." </string>
+
+    <string name="title_activity_code_enter">CodeEnterActivity</string>
+    <string name="error_attachment">Ошибка вложений</string>
+    <string name="error_orders_id">Неправильный ID заказа</string>
+    <string name="title_activity_order_result">OrderResultActivity</string>
+    <string name="oaa_order_in_processed">Ваш заказ находится в обработке.</string>
+    <string name="oaa_id">ID заказа</string>
+    <string name="oaa_lang">Язык перевода</string>
+    <string name="oaa_pages_count">Кол-во страниц</string>
+    <string name="oaa_price">Цена</string>
+    <string name="oaa_date_end">Дата завершения</string>
+    <string name="oaa_urgency">Скорость перевода</string>
+    <string name="oaa_btn_accept">Принять</string>
+    <string name="aoa_btn_cancel">Отказаться</string>
+    <string name="oaa_title">Результат рассмотрения Вашего заказа</string>
+    <string name="ora_access_denied">Доступ запрещен</string>
+    <string name="ora_error_order_id">Ошибка. Неправильный ID заказа</string>
+    <string name="error_unknown">Неизвестная ошибка</string>
+    <string name="awo_title_translating">Ваш заказ в процессе перевода...</string>
+    <string name="ora_order_canceled">Заказ отменен.</string>
+    <string name="oaa_searching_translator">Ведется поиск переводчика для заказа...</string>
+    <string name="tf_order_completed">Ваш заказ переведен и отправлен на указанную Вами почту</string>
+    <string name="tf_ok">Хорошо, спасибо!</string>
+    <string name="error_server_not_available">Сервер не доступен</string>
+</resources>

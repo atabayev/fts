@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/activityBg"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="kz.ftsystem.yel.fts.WaitingTranslatorActivity">
+
+
+    <android.support.v4.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/wtaSwipeContainer"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_8sp"
+                    android:layout_marginTop="10sp"
+                    android:layout_marginEnd="@dimen/dim_8sp"
+                    android:layout_marginBottom="10sp"
+                    android:background="@color/bg_gray"
+                    android:gravity="center"
+                    android:text="@string/oaa_searching_translator"
+                    android:textSize="18sp" />
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingStart="@dimen/dim_10sp"
+                    android:paddingLeft="@dimen/dim_10sp"
+                    android:paddingTop="@dimen/dim_10sp"
+                    android:paddingEnd="@dimen/dim_10sp"
+                    android:paddingRight="@dimen/dim_10sp"
+                    android:paddingBottom="@dimen/dim_10sp"
+                    android:stretchColumns="*">
+
+                    <TableRow
+                        android:background="@color/tvTextColor"
+                        android:paddingStart="40sp"
+                        android:paddingLeft="40sp"
+                        android:paddingEnd="40sp"
+                        android:paddingRight="40sp">
+
+                        <TextView
+                            android:id="@+id/wtaID"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dim_8sp"
+                            android:text="@string/oaa_id"
+                            android:textColor="@color/activityBg"
+                            android:textSize="@dimen/dim_14sp" />
+
+                        <TextView
+                            android:id="@+id/wtaIdText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dim_10sp"
+                            android:text="20180306301"
+                            android:textColor="@color/activityBg"
+                            android:textSize="@dimen/dim_14sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:background="@color/tvHintTextColor"
+                        android:paddingStart="40sp"
+                        android:paddingLeft="40sp"
+                        android:paddingEnd="40sp"
+                        android:paddingRight="40sp">
+
+                        <TextView
+                            android:id="@+id/wtaLang"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dim_8sp"
+                            android:text="@string/oaa_lang"
+                            android:textColor="@color/activityBg"
+                            android:textSize="@dimen/dim_14sp" />
+
+                        <TextView
+                            android:id="@+id/wtaLangText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dim_10sp"
+                            android:text="с Казахского на Корейский"
+                            android:textColor="@color/activityBg"
+                            android:textSize="@dimen/dim_14sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:background="@color/tvTextColor"
+                        android:paddingStart="40sp"
+                        android:paddingLeft="40sp"
+                        android:paddingEnd="40sp"
+                        android:paddingRight="40sp">
+
+                        <TextView
+                            android:id="@+id/wtaPagesCount"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dim_8sp"
+                            android:text="@string/oaa_pages_count"
+                            android:textColor="@color/activityBg"
+                            android:textSize="@dimen/dim_14sp" />
+
+                        <TextView
+                            android:id="@+id/wtaPagesCountText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dim_10sp"
+                            android:text="20"
+                            android:textColor="@color/activityBg"
+                            android:textSize="@dimen/dim_14sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:background="@color/tvHintTextColor"
+                        android:paddingStart="40sp"
+                        android:paddingLeft="40sp"
+                        android:paddingEnd="40sp"
+                        android:paddingRight="40sp">
+
+                        <TextView
+                            android:id="@+id/wtaPrice"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dim_8sp"
+                            android:text="@string/oaa_price"
+                            android:textColor="@color/activityBg"
+                            android:textSize="@dimen/dim_14sp" />
+
+                        <TextView
+                            android:id="@+id/wtaPriceText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dim_10sp"
+                            android:text="100000 тенге"
+                            android:textColor="@color/activityBg"
+                            android:textSize="@dimen/dim_14sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:background="@color/tvTextColor"
+                        android:paddingStart="40sp"
+                        android:paddingLeft="40sp"
+                        android:paddingEnd="40sp"
+                        android:paddingRight="40sp">
+
+                        <TextView
+                            android:id="@+id/wtaDateEnd"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dim_8sp"
+                            android:text="@string/oaa_date_end"
+                            android:textColor="@color/activityBg"
+                            android:textSize="@dimen/dim_14sp" />
+
+                        <TextView
+                            android:id="@+id/wtaDateEndText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dim_10sp"
+                            android:text="01.12.2018"
+                            android:textColor="@color/activityBg"
+                            android:textSize="@dimen/dim_14sp" />
+                    </TableRow>
+
+                    <TableRow
+                        android:background="@color/tvHintTextColor"
+                        android:paddingStart="40sp"
+                        android:paddingLeft="40sp"
+                        android:paddingEnd="40sp"
+                        android:paddingRight="40sp">
+
+                        <TextView
+                            android:id="@+id/wtaUrgency"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dim_8sp"
+                            android:text="@string/oaa_urgency"
+                            android:textColor="@color/activityBg"
+                            android:textSize="@dimen/dim_14sp" />
+
+                        <TextView
+                            android:id="@+id/wtaUrgencyText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/dim_10sp"
+                            android:text="Обычная"
+                            android:textColor="@color/activityBg"
+                            android:textSize="@dimen/dim_14sp" />
+                    </TableRow>
+                </TableLayout>
+            </LinearLayout>
+        </ScrollView>
+    </android.support.v4.widget.SwipeRefreshLayout>
+</android.support.constraint.ConstraintLayout>

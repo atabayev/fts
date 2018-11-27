@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activityBg"
+    tools:context="kz.ftsystem.yel.fts.OrderResultActivity">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/dim_8sp"
+            android:layout_marginEnd="@dimen/dim_8sp"
+            android:layout_marginBottom="10sp"
+            android:layout_marginTop="10sp"
+            android:text="@string/oaa_title"
+            android:gravity="center"
+            android:textSize="18sp"
+            android:background="@color/bg_gray"/>
+
+        <TableLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/dim_10sp"
+            android:paddingLeft="@dimen/dim_10sp"
+            android:paddingTop="@dimen/dim_10sp"
+            android:paddingEnd="@dimen/dim_10sp"
+            android:paddingRight="@dimen/dim_10sp"
+            android:paddingBottom="@dimen/dim_10sp"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:background="@color/tvTextColor"
+                android:paddingStart="40sp"
+                android:paddingLeft="40sp"
+                android:paddingEnd="40sp"
+                android:paddingRight="40sp">
+
+                <TextView
+                    android:id="@+id/oraID"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_8sp"
+                    android:text="@string/oaa_id"
+                    android:textColor="@color/activityBg"
+                    android:textSize="@dimen/dim_14sp" />
+
+                <TextView
+                    android:id="@+id/oraIdText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_10sp"
+                    android:text="20180306301"
+                    android:textColor="@color/activityBg"
+                    android:textSize="@dimen/dim_14sp" />
+            </TableRow>
+
+            <TableRow
+                android:background="@color/tvHintTextColor"
+                android:paddingStart="40sp"
+                android:paddingLeft="40sp"
+                android:paddingEnd="40sp"
+                android:paddingRight="40sp">
+
+                <TextView
+                    android:id="@+id/oraLang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_8sp"
+                    android:text="@string/oaa_lang"
+                    android:textColor="@color/activityBg"
+                    android:textSize="@dimen/dim_14sp" />
+
+                <TextView
+                    android:id="@+id/oraLangText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_10sp"
+                    android:text="с Казахского на Корейский"
+                    android:textColor="@color/activityBg"
+                    android:textSize="@dimen/dim_14sp" />
+            </TableRow>
+
+            <TableRow
+                android:background="@color/tvTextColor"
+                android:paddingStart="40sp"
+                android:paddingLeft="40sp"
+                android:paddingEnd="40sp"
+                android:paddingRight="40sp">
+
+                <TextView
+                    android:id="@+id/oraPagesCount"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_8sp"
+                    android:text="@string/oaa_pages_count"
+                    android:textColor="@color/activityBg"
+                    android:textSize="@dimen/dim_14sp" />
+
+                <TextView
+                    android:id="@+id/oraPagesCountText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_10sp"
+                    android:text="20"
+                    android:textColor="@color/activityBg"
+                    android:textSize="@dimen/dim_14sp" />
+            </TableRow>
+
+            <TableRow
+                android:background="@color/tvHintTextColor"
+                android:paddingStart="40sp"
+                android:paddingLeft="40sp"
+                android:paddingEnd="40sp"
+                android:paddingRight="40sp">
+
+                <TextView
+                    android:id="@+id/oraPrice"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_8sp"
+                    android:text="@string/oaa_price"
+                    android:textColor="@color/activityBg"
+                    android:textSize="@dimen/dim_14sp" />
+
+                <TextView
+                    android:id="@+id/oraPriceText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_10sp"
+                    android:text="100000 тенге"
+                    android:textColor="@color/activityBg"
+                    android:textSize="@dimen/dim_14sp" />
+            </TableRow>
+
+            <TableRow
+                android:background="@color/tvTextColor"
+                android:paddingStart="40sp"
+                android:paddingLeft="40sp"
+                android:paddingEnd="40sp"
+                android:paddingRight="40sp">
+
+                <TextView
+                    android:id="@+id/oraDateEnd"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_8sp"
+                    android:text="@string/oaa_date_end"
+                    android:textColor="@color/activityBg"
+                    android:textSize="@dimen/dim_14sp" />
+
+                <TextView
+                    android:id="@+id/oraDateEndText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_10sp"
+                    android:text="01.12.2018"
+                    android:textColor="@color/activityBg"
+                    android:textSize="@dimen/dim_14sp" />
+            </TableRow>
+
+            <TableRow
+                android:background="@color/tvHintTextColor"
+                android:paddingStart="40sp"
+                android:paddingLeft="40sp"
+                android:paddingEnd="40sp"
+                android:paddingRight="40sp">
+
+                <TextView
+                    android:id="@+id/oraUrgency"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_8sp"
+                    android:text="@string/oaa_urgency"
+                    android:textColor="@color/activityBg"
+                    android:textSize="@dimen/dim_14sp" />
+
+                <TextView
+                    android:id="@+id/oraUrgencyText"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/dim_10sp"
+                    android:text="Обычная"
+                    android:textColor="@color/activityBg"
+                    android:textSize="@dimen/dim_14sp" />
+            </TableRow>
+
+        </TableLayout>
+
+        <View
+            android:layout_width="wrap_content"
+            android:layout_height="2sp"
+            android:layout_marginStart="10sp"
+            android:layout_marginLeft="10sp"
+            android:layout_marginTop="30sp"
+            android:layout_marginEnd="10sp"
+            android:layout_marginRight="10sp"
+            android:layout_marginBottom="30sp"
+            android:background="@color/colorAccent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/oraBtnAccept"
+                android:layout_width="120sp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30sp"
+                android:layout_marginLeft="30sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginEnd="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/bg_btn"
+                android:paddingStart="5sp"
+                android:paddingLeft="5sp"
+                android:paddingTop="5sp"
+                android:paddingEnd="5sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="5sp"
+                android:onClick="onClick"
+                android:text="@string/oaa_btn_accept"
+                android:textColor="@color/btnTextColor" />
+
+
+            <Button
+                android:id="@+id/oraBtnCancel"
+                android:layout_width="120sp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30sp"
+                android:layout_marginLeft="30sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginEnd="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="10sp"
+                android:background="@drawable/bg_btn"
+                android:paddingStart="5sp"
+                android:paddingLeft="5sp"
+                android:paddingTop="5sp"
+                android:paddingEnd="5sp"
+                android:paddingRight="5sp"
+                android:paddingBottom="5sp"
+                android:onClick="onClick"
+                android:text="@string/aoa_btn_cancel"
+                android:textColor="@color/btnTextColor" />
+
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+
+</android.support.design.widget.CoordinatorLayout>
