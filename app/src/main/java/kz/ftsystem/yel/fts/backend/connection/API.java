@@ -1,4 +1,4 @@
-package kz.ftsystem.yel.fts.backend;
+package kz.ftsystem.yel.fts.backend.connection;
 
 import java.util.List;
 
@@ -92,5 +92,13 @@ public interface API {
             @Field("cid") String myId,
             @Field("token") String myToken,
             @Field("oid") String orderId);
+
+
+    @FormUrlEncoded
+    @POST("registration/set_fcm_token/")
+    Call<ServerResponse> sendFcmToken(
+            @Field("cid") String myId,
+            @Field("token") String myToken,
+            @Field("fcm_token") String fcmToken);
 
 }

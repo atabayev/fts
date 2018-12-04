@@ -91,4 +91,16 @@
     <string name="tf_order_completed">Ваш заказ переведен и отправлен на указанную Вами почту</string>
     <string name="tf_ok">Хорошо, спасибо!</string>
     <string name="error_server_not_available">Сервер не доступен</string>
+
+    <!--FCM-->
+    <string name="default_notification_channel_id">default_channel_id</string>
+    <string name="fcm_message"> fcm message </string>
+
+    <!--FCM messages-->
+    <string name="title_1">Обработан</string>
+    <string name="body_1">Ваш заказ обработан</string>
+    <string name="title_2">Результат</string>
+    <string name="body_2">Найден подходящий переводчик</string>
+    <string name="title_3">Завершен</string>
+    <string name="body_3">Ваш заказ завершен</string>
 </resources>

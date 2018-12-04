@@ -3,9 +3,7 @@ package kz.ftsystem.yel.fts;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -13,25 +11,16 @@ import android.widget.Switch;
 import android.widget.Toast;
 
 import com.ftsystem.yel.fts.R;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.FirebaseException;
-import com.google.firebase.FirebaseTooManyRequestsException;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.HashMap;
-import java.util.concurrent.TimeUnit;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
-import kz.ftsystem.yel.fts.backend.Backend;
-import kz.ftsystem.yel.fts.backend.DB;
+import kz.ftsystem.yel.fts.backend.connection.Backend;
+import kz.ftsystem.yel.fts.backend.database.DB;
 import kz.ftsystem.yel.fts.backend.MyConstants;
 
 public class AuthenticationActivity extends AppCompatActivity implements MyCallback {

@@ -1,4 +1,4 @@
-package kz.ftsystem.yel.fts.backend;
+package kz.ftsystem.yel.fts.backend.connection;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

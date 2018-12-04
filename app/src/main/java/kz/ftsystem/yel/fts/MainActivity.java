@@ -8,33 +8,41 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.Settings;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ftsystem.yel.fts.R;
 import com.getkeepsafe.taptargetview.TapTarget;
 import com.getkeepsafe.taptargetview.TapTargetSequence;
 import com.github.florent37.materialtextfield.MaterialTextField;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.iid.FirebaseInstanceId;
+import com.google.firebase.iid.InstanceIdResult;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import droidninja.filepicker.FilePickerBuilder;
 import droidninja.filepicker.FilePickerConst;
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
-import kz.ftsystem.yel.fts.backend.Backend;
-import kz.ftsystem.yel.fts.backend.DB;
+import kz.ftsystem.yel.fts.backend.connection.Backend;
+import kz.ftsystem.yel.fts.backend.database.DB;
 import kz.ftsystem.yel.fts.backend.MyConstants;
+import kz.ftsystem.yel.fts.backend.services.MyFirebaseMessagingService;
 import stfalcon.universalpickerdialog.UniversalPickerDialog;
 
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, UniversalPickerDialog.OnPickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, UniversalPickerDialog.OnPickListener, MyCallback {
 
     ArrayList<String> selectedFiles = new ArrayList<>();
     ArrayList<String> imgPaths = new ArrayList<>();
@@ -42,7 +50,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     String langFrom, langTo;
     String[] listLangFrom = new String[5];
     String[] listLangTo = new String[5];
-    @BindView(R.id.etPagesCount) EditText etPageC;
+    @BindView(R.id.etPagesCount)
+    EditText etPageC;
     final String[] zipTypes = {".zip"};
     final String[] rarTypes = {".rar"};
 
@@ -52,6 +61,21 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        FirebaseInstanceId.getInstance().getInstanceId().addOnSuccessListener(this, new OnSuccessListener<InstanceIdResult>() {
+            @Override
+            public void onSuccess(InstanceIdResult instanceIdResult) {
+                String fcmToken = instanceIdResult.getToken();
+                Log.d(MyConstants.TAG, "My token: " + fcmToken);
+                DB preference = new DB(MainActivity.this);
+                preference.open();
+                String myId = preference.getVariable(MyConstants.MY_ID);
+                String myToken = preference.getVariable(MyConstants.MY_TOKEN);
+                Backend backend = new Backend(MainActivity.this, MainActivity.this);
+                backend.sendNewFcmToken(myId, myToken, fcmToken);
+            }
+        });
+
         ButterKnife.bind(this);
         materialTextField = findViewById(R.id.materialTextField);
         materialTextField.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +83,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onClick(View v) {
                 materialTextField.expand();
                 InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                assert imm != null;
                 imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
             }
         });
@@ -142,6 +167,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void select_language() {
         new UniversalPickerDialog.Builder(this)
                 .setTitle(R.string.select_lang)
+                .setBackgroundColor(getResources().getColor(R.color.splashScreenBg))
+                .setContentTextColor(getResources().getColor(R.color.colorAccent))
                 .setListener(this)
                 .setInputs(
                         new UniversalPickerDialog.Input(0, listLangFrom),
@@ -240,7 +267,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onRequestPermissionsResult(int requestCode, String permissions[], int[] grantResults) {
+    public void onRequestPermissionsResult(int requestCode, @NonNull String permissions[], @NonNull int[] grantResults) {
         switch (requestCode) {
             case MyConstants.REQUEST_STORAGE_I: {
                 if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
@@ -286,5 +313,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     public void onPick(int[] selectedValues, int key) {
         langFrom = listLangFrom[selectedValues[0]];
         langTo = listLangTo[selectedValues[1]];
+    }
+
+    @Override
+    public void fromBackend(HashMap<String, String> data) {
+
     }
 }

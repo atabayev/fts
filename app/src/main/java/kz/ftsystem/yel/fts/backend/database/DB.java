@@ -1,10 +1,12 @@
-package kz.ftsystem.yel.fts.backend;
+package kz.ftsystem.yel.fts.backend.database;
 
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import kz.ftsystem.yel.fts.backend.MyConstants;
 
 
 public class DB {

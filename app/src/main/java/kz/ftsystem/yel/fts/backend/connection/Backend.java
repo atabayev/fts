@@ -1,7 +1,6 @@
-package kz.ftsystem.yel.fts.backend;
+package kz.ftsystem.yel.fts.backend.connection;
 
 import android.content.Context;
-import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.support.annotation.NonNull;
@@ -15,7 +14,6 @@ import com.google.gson.GsonBuilder;
 import org.apache.commons.io.FileUtils;
 
 import java.io.File;
-import java.io.StreamCorruptedException;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -23,8 +21,8 @@ import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
-import kz.ftsystem.yel.fts.MainActivity;
-import kz.ftsystem.yel.fts.OrderAcceptedActivity;
+import kz.ftsystem.yel.fts.backend.database.DB;
+import kz.ftsystem.yel.fts.backend.MyConstants;
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
 import okhttp3.OkHttpClient;
@@ -322,6 +320,39 @@ public class Backend {
 
                     @Override
                     public void onFailure(@NonNull Call<ServerResponse> call, @NonNull Throwable t) {
+                        Log.d(MyConstants.TAG, "Error: " + t.getMessage());
+                    }
+                });
+            } catch (Exception e) {
+                Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(context, context.getResources().getString(R.string.inet_off), Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+    public void sendNewFcmToken(String myId, String myToken, String fmcToken) {
+        Call<ServerResponse> call = getApi().sendFcmToken(myId, myToken, fmcToken);
+        if (isNetworkOnline()) {
+            try {
+                call.enqueue(new Callback<ServerResponse>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ServerResponse> call, @NonNull Response<ServerResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            HashMap<String, String> data = new HashMap<>();
+                            data.put("response", response.body().getResponse());
+                            myCallback.fromBackend(data);
+                        } else {
+                            Log.d(MyConstants.TAG, "failure response is: " + response.raw().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ServerResponse> call, @NonNull Throwable t) {
+                        HashMap<String, String> data = new HashMap<>();
+                        data.put("response", "failure");
+                        myCallback.fromBackend(data);
                         Log.d(MyConstants.TAG, "Error: " + t.getMessage());
                     }
                 });

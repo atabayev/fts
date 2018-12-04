@@ -23,6 +23,14 @@
           }
         },
         {
+          "client_id": "567222563883-sqm5i8ff5cl5234dq1tqsk2c157kkceu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.ftsystem.yel.fts",
+            "certificate_hash": "296dd4da888c8328b3ac29313820e31fe1c809ec"
+          }
+        },
+        {
           "client_id": "567222563883-89esmikik92nh8v6b79mleu0i5rqkku4.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -59,6 +67,22 @@
       },
       "oauth_client": [
         {
+          "client_id": "567222563883-08c20ukfdo43j8fehsm73la7129120r0.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.ftsystem.yel.ftst",
+            "certificate_hash": "296dd4da888c8328b3ac29313820e31fe1c809ec"
+          }
+        },
+        {
+          "client_id": "567222563883-n6kk85aatk2uj9gi99ru0m5718h59sfb.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.ftsystem.yel.ftst",
+            "certificate_hash": "36f14bf019e51722c2d0da9fe4725e8d3ab4fdeb"
+          }
+        },
+        {
           "client_id": "567222563883-89esmikik92nh8v6b79mleu0i5rqkku4.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -73,8 +97,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "567222563883-89esmikik92nh8v6b79mleu0i5rqkku4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

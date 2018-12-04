@@ -1,4 +1,4 @@
-package kz.ftsystem.yel.fts.backend;
+package kz.ftsystem.yel.fts.backend.database;
 
 import android.content.ContentValues;
 import android.content.Context;

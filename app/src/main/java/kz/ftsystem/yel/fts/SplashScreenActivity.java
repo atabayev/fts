@@ -3,7 +3,6 @@ package kz.ftsystem.yel.fts;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.widget.Toast;
 
 import com.ftsystem.yel.fts.R;
@@ -11,8 +10,8 @@ import com.ftsystem.yel.fts.R;
 import java.util.HashMap;
 
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
-import kz.ftsystem.yel.fts.backend.Backend;
-import kz.ftsystem.yel.fts.backend.DB;
+import kz.ftsystem.yel.fts.backend.connection.Backend;
+import kz.ftsystem.yel.fts.backend.database.DB;
 import kz.ftsystem.yel.fts.backend.MyConstants;
 
 public class SplashScreenActivity extends AppCompatActivity implements MyCallback {
@@ -42,27 +41,6 @@ public class SplashScreenActivity extends AppCompatActivity implements MyCallbac
             startActivity(intent);
         }
         preferences.close();
-
-//        if (!preferences.getVariable(MyConstants.MY_ID).equals("0")) {
-//            Backend backend = new Backend(this, this);
-//            backend.getIsOrdered(preferences.getVariable(MyConstants.MY_ID));
-//        } else {
-//            Intent intent = new Intent(this, AuthenticationActivity.class);
-//            intent.putExtra("enter", "0");
-//            startActivity(intent);
-//        }
-
-
-//        if (preferences.getVariable(MyConstants.AUTO_ENTER).equals("1")) {
-//            Backend backend = new Backend(this, this);
-//            backend.getIsOrdered(preferences.getVariable(MyConstants.MY_ID));
-//            preferences.close();
-//        } else {
-//            Intent intent = new Intent(this, AuthenticationActivity.class);
-//            startActivity(intent);
-//            preferences.close();
-//            finish();
-//        }
     }
 
     @Override

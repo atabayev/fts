@@ -11,8 +11,8 @@ import com.ftsystem.yel.fts.R;
 import java.util.HashMap;
 
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
-import kz.ftsystem.yel.fts.backend.Backend;
-import kz.ftsystem.yel.fts.backend.DB;
+import kz.ftsystem.yel.fts.backend.connection.Backend;
+import kz.ftsystem.yel.fts.backend.database.DB;
 import kz.ftsystem.yel.fts.backend.MyConstants;
 
 public class TranslatingFinishedActivity extends AppCompatActivity implements MyCallback {
