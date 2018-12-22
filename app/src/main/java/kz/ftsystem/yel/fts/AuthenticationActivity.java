@@ -84,7 +84,7 @@ public class AuthenticationActivity extends AppCompatActivity implements MyCallb
             case R.id.btnEnter:
 //                startPhoneNumberVerification(phoneNum.getText().toString());
                 if (phoneNum.getText().toString().isEmpty()) {
-                    Toast.makeText(this, getResources().getString(R.string.enter_phone_num), Toast.LENGTH_SHORT).show();
+                    phoneNum.setError(getResources().getString(R.string.enter_phone_num));
                     break;
                 }
                 DB preferences = new DB(this);

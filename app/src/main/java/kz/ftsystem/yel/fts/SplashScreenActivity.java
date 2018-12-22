@@ -22,6 +22,9 @@ public class SplashScreenActivity extends AppCompatActivity implements MyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
+//        Intent intent = new Intent(this, RegistrationActivity.class);
+//        startActivity(intent);
+
         DB preferences = new DB(this);
         preferences.open();
         String phoneNumber = preferences.getVariable(MyConstants.MY_PHONE_NUM);

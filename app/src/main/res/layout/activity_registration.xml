@@ -25,71 +25,151 @@
                 android:fontFamily="@font/exo_medium"
                 android:gravity="center"
                 android:text="@string/registration"
-                android:textColor="@color/colorAccent"
+                android:textColor="@color/bg_gray"
                 android:textSize="20sp" />
 
-            <EditText
-                android:id="@+id/regName"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30sp"
-                android:layout_marginLeft="30sp"
-                android:layout_marginRight="30sp"
-                android:layout_marginTop="30sp"
-                android:background="@drawable/bg_edit_text"
-                android:hint="@string/name"
-                android:paddingBottom="8sp"
-                android:paddingLeft="8sp"
-                android:paddingRight="8sp"
-                android:paddingTop="8sp"
-                android:textColor="@color/tvTextColor" />
+            <!--<EditText-->
+                <!--android:id="@+id/regName"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="30sp"-->
+                <!--android:layout_marginLeft="30sp"-->
+                <!--android:layout_marginRight="30sp"-->
+                <!--android:layout_marginTop="30sp"-->
+                <!--android:background="@drawable/bg_edit_text"-->
+                <!--android:hint="@string/name"-->
+                <!--android:paddingBottom="8sp"-->
+                <!--android:paddingLeft="8sp"-->
+                <!--android:paddingRight="8sp"-->
+                <!--android:paddingTop="8sp"-->
+                <!--android:textColor="@color/tvTextColor" />-->
 
-            <EditText
-                android:id="@+id/regSurename"
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30sp"
-                android:layout_marginLeft="30sp"
-                android:layout_marginRight="30sp"
-                android:background="@drawable/bg_edit_text"
-                android:hint="@string/surname"
-                android:paddingBottom="8sp"
-                android:paddingLeft="8sp"
-                android:paddingRight="8sp"
-                android:paddingTop="8sp"
-                android:textColor="@color/tvTextColor" />
+                android:layout_height="wrap_content">
 
-            <EditText
-                android:id="@+id/regEMAIL"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30sp"
-                android:layout_marginLeft="30sp"
-                android:layout_marginRight="30sp"
-                android:background="@drawable/bg_edit_text"
-                android:hint="@string/email"
-                android:inputType="textEmailAddress"
-                android:paddingBottom="8sp"
-                android:paddingLeft="8sp"
-                android:paddingRight="8sp"
-                android:paddingTop="8sp"
-                android:textColor="@color/tvTextColor" />
+                <AutoCompleteTextView
+                    android:id="@+id/regName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/name"
+                    android:inputType="textAutoComplete"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_marginStart="30sp"
+                    android:layout_marginEnd="30sp"
+                    android:layout_marginBottom="10sp"
+                    android:textColorHint="@color/colorAccent"
+                    android:textColor="@color/bg_gray"/>
 
-            <EditText
-                android:id="@+id/regTelNum"
+            </android.support.design.widget.TextInputLayout>
+
+            <!--<EditText-->
+                <!--android:id="@+id/regSurename"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="30sp"-->
+                <!--android:layout_marginLeft="30sp"-->
+                <!--android:layout_marginRight="30sp"-->
+                <!--android:background="@drawable/bg_edit_text"-->
+                <!--android:hint="@string/surname"-->
+                <!--android:paddingBottom="8sp"-->
+                <!--android:paddingLeft="8sp"-->
+                <!--android:paddingRight="8sp"-->
+                <!--android:paddingTop="8sp"-->
+                <!--android:textColor="@color/tvTextColor" />-->
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="30sp"
-                android:layout_marginLeft="30sp"
-                android:layout_marginRight="30sp"
-                android:background="@drawable/bg_edit_text"
-                android:hint="@string/tel_number"
-                android:inputType="phone"
-                android:paddingBottom="8sp"
-                android:paddingLeft="8sp"
-                android:paddingRight="8sp"
-                android:paddingTop="8sp"
-                android:textColor="@color/tvTextColor" />
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/regSurename"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/surname"
+                    android:inputType="textAutoComplete"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_marginStart="30sp"
+                    android:layout_marginEnd="30sp"
+                    android:layout_marginBottom="10sp"
+                    android:textColorHint="@color/colorAccent"
+                    android:textColor="@color/bg_gray"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!--<EditText-->
+                <!--android:id="@+id/regEMAIL"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="30sp"-->
+                <!--android:layout_marginLeft="30sp"-->
+                <!--android:layout_marginRight="30sp"-->
+                <!--android:background="@drawable/bg_edit_text"-->
+                <!--android:hint="@string/email"-->
+                <!--android:inputType="textEmailAddress"-->
+                <!--android:paddingBottom="8sp"-->
+                <!--android:paddingLeft="8sp"-->
+                <!--android:paddingRight="8sp"-->
+                <!--android:paddingTop="8sp"-->
+                <!--android:textColor="@color/tvTextColor" />-->
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/regEMAIL"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/email"
+                    android:inputType="textEmailAddress"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_marginStart="30sp"
+                    android:layout_marginEnd="30sp"
+                    android:layout_marginBottom="10sp"
+                    android:textColorHint="@color/colorAccent"
+                    android:textColor="@color/bg_gray"/>
+
+            </android.support.design.widget.TextInputLayout>
+
+            <!--<EditText-->
+                <!--android:id="@+id/regTelNum"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="30sp"-->
+                <!--android:layout_marginLeft="30sp"-->
+                <!--android:layout_marginRight="30sp"-->
+                <!--android:background="@drawable/bg_edit_text"-->
+                <!--android:hint="@string/tel_number"-->
+                <!--android:inputType="phone"-->
+                <!--android:paddingBottom="8sp"-->
+                <!--android:paddingLeft="8sp"-->
+                <!--android:paddingRight="8sp"-->
+                <!--android:paddingTop="8sp"-->
+                <!--android:textColor="@color/tvTextColor" />-->
+
+            <android.support.design.widget.TextInputLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/regTelNum"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/tel_number"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_marginStart="30sp"
+                    android:layout_marginEnd="30sp"
+                    android:layout_marginBottom="10sp"
+                    android:textColorHint="@color/colorAccent"
+                    android:textColor="@color/bg_gray"/>
+
+            </android.support.design.widget.TextInputLayout>
 
             <Button
                 android:id="@+id/createAcc"
@@ -102,7 +182,7 @@
                 android:background="@drawable/bg_btn"
                 android:onClick="onClick"
                 android:text="@string/create_account"
-                android:textColor="@color/btnTextColor" />
+                android:textColor="@color/btnTextColor"/>
 
         </LinearLayout>
     </ScrollView>

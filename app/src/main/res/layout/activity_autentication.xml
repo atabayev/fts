@@ -26,20 +26,38 @@
                 android:contentDescription="@string/logo"
                 app:srcCompat="@drawable/logo_main" />
 
-            <EditText
-                android:id="@+id/edPhoneNumber"
+            <!--<EditText-->
+                <!--android:id="@+id/edPhoneNumber"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_marginBottom="20sp"-->
+                <!--android:layout_marginLeft="30sp"-->
+                <!--android:layout_marginRight="30sp"-->
+                <!--android:background="@drawable/bg_edit_text"-->
+                <!--android:hint="@string/tel_number"-->
+                <!--android:inputType="phone"-->
+                <!--android:paddingBottom="8sp"-->
+                <!--android:paddingLeft="8sp"-->
+                <!--android:paddingRight="8sp"-->
+                <!--android:paddingTop="8sp" />-->
+
+            <android.support.design.widget.TextInputLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="20sp"
-                android:layout_marginLeft="30sp"
-                android:layout_marginRight="30sp"
-                android:background="@drawable/bg_edit_text"
-                android:hint="@string/tel_number"
-                android:inputType="phone"
-                android:paddingBottom="8sp"
-                android:paddingLeft="8sp"
-                android:paddingRight="8sp"
-                android:paddingTop="8sp" />
+                android:layout_height="wrap_content">
+
+                <AutoCompleteTextView
+                    android:id="@+id/edPhoneNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/prompt_phone_number"
+                    android:inputType="phone"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:layout_marginStart="30sp"
+                    android:layout_marginEnd="30sp"
+                    android:layout_marginBottom="10sp"/>
+
+            </android.support.design.widget.TextInputLayout>
 
             <!--</android.support.design.widget.TextInputLayout>-->
 
@@ -57,7 +75,7 @@
                 android:paddingLeft="40sp"
                 android:paddingRight="40sp"
                 android:text="@string/enter"
-                android:textColor="@color/btnTextColor" />
+                android:textColor="@color/btnTextColor"/>
 
             <CheckBox
                 android:id="@+id/chbAutoEnter"

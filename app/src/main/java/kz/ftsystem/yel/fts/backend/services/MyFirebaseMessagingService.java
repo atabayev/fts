@@ -41,7 +41,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
         }
 
         if (remoteMessage.getNotification() != null) {
-            sendNotification(remoteMessage.getNotification().getTitle().toString());
+            sendNotification(remoteMessage.getNotification().getTitle());
         }
     }
 

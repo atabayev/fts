@@ -8,6 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -44,11 +45,18 @@ public class FinishActivity extends AppCompatActivity implements MyCallback {
     int matchParent = LinearLayout.LayoutParams.MATCH_PARENT;
 
     LinearLayout.LayoutParams lParams;
-    @BindView(R.id.constraintLayout) ConstraintLayout constraintLayout;
-    @BindView(R.id.llImages) LinearLayout llImages;
-    @BindView(R.id.llMain) LinearLayout llMain;
-    @BindView(R.id.pgBar) ProgressBar progressBar;
-    @BindView(R.id.tvPgBar) TextView tvPgBar;
+    @BindView(R.id.constraintLayout)
+    ConstraintLayout constraintLayout;
+    @BindView(R.id.llImages)
+    LinearLayout llImages;
+    @BindView(R.id.llMain)
+    LinearLayout llMain;
+    @BindView(R.id.pgBar)
+    ProgressBar progressBar;
+    @BindView(R.id.tvPgBar)
+    TextView tvPgBar;
+    @BindView(R.id.btnOrder)
+    Button btnOrder;
 
 
     @Override
@@ -159,28 +167,30 @@ public class FinishActivity extends AppCompatActivity implements MyCallback {
         progressBar.setVisibility(ProgressBar.VISIBLE);
         tvPgBar.setVisibility(TextView.VISIBLE);
         backend.sendingData(imgPaths, lang, pageCount);
-        progressBar.setVisibility(ProgressBar.INVISIBLE);
-        tvPgBar.setVisibility(TextView.INVISIBLE);
+        btnOrder.setEnabled(false);
     }
 
-    @NonNull
-    private RequestBody createPartFromString(String descriptionString) {
-        return RequestBody.create(okhttp3.MultipartBody.FORM, descriptionString);
-    }
-
-    @NonNull
-    private MultipartBody.Part prepareFilePart(String partName, String filePath) {
-        File file = FileUtils.getFile(String.valueOf(filePath));
-        String mimeType = URLConnection.guessContentTypeFromName(file.getName());
-        RequestBody requestFile =
-                RequestBody.create(
-                        MediaType.parse(mimeType),
-                        file);
-        return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
-    }
+//    @NonNull
+//    private RequestBody createPartFromString(String descriptionString) {
+//        return RequestBody.create(okhttp3.MultipartBody.FORM, descriptionString);
+//    }
+//
+//    @NonNull
+//    private MultipartBody.Part prepareFilePart(String partName, String filePath) {
+//        File file = FileUtils.getFile(String.valueOf(filePath));
+//        String mimeType = URLConnection.guessContentTypeFromName(file.getName());
+//        RequestBody requestFile =
+//                RequestBody.create(
+//                        MediaType.parse(mimeType),
+//                        file);
+//        return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
+//    }
 
     @Override
     public void fromBackend(HashMap<String, String> data) {
+        progressBar.setVisibility(ProgressBar.INVISIBLE);
+        tvPgBar.setVisibility(TextView.INVISIBLE);
+        btnOrder.setEnabled(true);
         switch (data.get("response")) {
             case "error_f":
                 Toast.makeText(this, getResources().getString(R.string.field_error), Toast.LENGTH_SHORT).show();
