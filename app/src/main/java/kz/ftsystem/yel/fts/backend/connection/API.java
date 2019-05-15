@@ -80,7 +80,7 @@ public interface API {
     Call<ServerResponse> newOrder(
             @Part("cid") RequestBody myid,
             @Part("language") RequestBody language,
-            @Part("pages") RequestBody pages,
+            @Part("comment") RequestBody pages,
             @Part("urgency") RequestBody urgency,
             @Part("token") RequestBody token,
             @Part List<MultipartBody.Part> files);
@@ -91,7 +91,9 @@ public interface API {
     Call<ServerResponse> finishOrder(
             @Field("cid") String myId,
             @Field("token") String myToken,
-            @Field("oid") String orderId);
+            @Field("oid") String orderId,
+            @Field("rating") float rating);
+
 
 
     @FormUrlEncoded

@@ -302,8 +302,8 @@ public class Backend {
     }
 
 
-    public void finishTheOrder(String myId, String myToken, String orderId) {
-        Call<ServerResponse> call = getApi().finishOrder(myId, myToken, orderId);
+    public void finishTheOrder(String myId, String myToken, String orderId, float rating) {
+        Call<ServerResponse> call = getApi().finishOrder(myId, myToken, orderId, rating);
         if (isNetworkOnline()) {
             try {
                 call.enqueue(new Callback<ServerResponse>() {

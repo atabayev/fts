@@ -31,6 +31,46 @@
           }
         },
         {
+          "client_id": "567222563883-kta8d0ib64ag0l9e3f3j93m0ifh38bv3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.ftsystem.yel.fts",
+            "certificate_hash": "36f14bf019e51722c2d0da9fe4725e8d3ab4fdeb"
+          }
+        },
+        {
+          "client_id": "567222563883-cl9vtfkp84a0kudcqd24vvv0mnh9vnig.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.ftsystem.yel.fts",
+            "certificate_hash": "3913fd5ff83df19c34a98e44399f7d419148c1d8"
+          }
+        },
+        {
+          "client_id": "567222563883-57uc8051nluf299aatadcv9k2jr17a44.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.ftsystem.yel.fts",
+            "certificate_hash": "25fe3765955b0b98c35413c7c80208af2d2d2d90"
+          }
+        },
+        {
+          "client_id": "567222563883-bkijousciscipo3tihcjsijo2i4rc3ed.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.ftsystem.yel.fts",
+            "certificate_hash": "7418aab6f138fa95c68dd6056dceecc710ed9e68"
+          }
+        },
+        {
+          "client_id": "567222563883-o25umraohucf8tssgkmhg2sck1lat7hd.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.ftsystem.yel.fts",
+            "certificate_hash": "972e93cdf20f26319d4e7ed058bd067b5ed993b1"
+          }
+        },
+        {
           "client_id": "567222563883-89esmikik92nh8v6b79mleu0i5rqkku4.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -80,6 +120,14 @@
           "android_info": {
             "package_name": "kz.ftsystem.yel.ftst",
             "certificate_hash": "36f14bf019e51722c2d0da9fe4725e8d3ab4fdeb"
+          }
+        },
+        {
+          "client_id": "567222563883-vjlca94j5req4rrce036pfor0ttbi4h7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.ftsystem.yel.ftst",
+            "certificate_hash": "25fe3765955b0b98c35413c7c80208af2d2d2d90"
           }
         },
         {

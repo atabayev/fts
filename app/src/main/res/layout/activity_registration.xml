@@ -180,7 +180,7 @@
                 android:layout_marginRight="30sp"
                 android:layout_marginTop="30sp"
                 android:background="@drawable/bg_btn"
-                android:onClick="onClick"
+                android:onClick="onClickReg"
                 android:text="@string/create_account"
                 android:textColor="@color/btnTextColor"/>
 

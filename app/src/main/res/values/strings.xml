@@ -1,16 +1,16 @@
 <resources>
-    <string name="app_name">Fast Translate System</string>
+    <string name="app_name">FTSC</string>
     <string name="btn_gallery">Галерея</string>
     <string name="btn_docs">Документы</string>
     <string name="btn_lang_select">Выберите языки перевода</string>
-    <string name="enter_page_count">Введите коливество страниц </string>
+    <string name="enter_page_count">Коментарий к заказу</string>
     <string name="btn_confirm">Подтвердить</string>
     <string name="select_lang">Выберите язык</string>
     <string name="btn_order">Оформить заказ</string>
     <string name="menu_sign_in">Вход</string>
     <string name="menu_sign_out">Выход</string>
     <string name="tv_lang">Язык перевода</string>
-    <string name="tv_pages">Количество страниц</string>
+    <string name="tv_pages">Коментарий</string>
     <string name="tv_order_is_processed">Ваш заказ находится в обработке!</string>
     <string name="tv_orders_id">ID Вашего заказа: </string>
     <string name="btn_image_close">закрыть</string>
@@ -36,7 +36,7 @@
     <string name="enter_phone_num">Введите номер телефона</string>
 
     <string name="tt_select_language">"Выберите язык перевода"</string>
-    <string name="tt_select_page_count">"Выберите количество страниц"</string>
+    <string name="tt_select_page_count">"Введите коментарий к своему заказу"</string>
     <string name="tt_select_images">"Выберите изображения для загрузки и отправки"</string>
     <string name="tt_select_documents">"или текстовые документы"</string>
     <string name="tt_btn_confirm">"и в конце подтвердите Ваш выбор!"</string>
@@ -47,11 +47,11 @@
     <string name="lang_from_en">с Английского</string>
     <string name="lang_from_ko">с Корейского</string>
     <string name="lang_from_ch">с Китайского</string>
-    <string name="lang_to_kz">на Казахский</string>
-    <string name="lang_to_ru">на Русский</string>
-    <string name="lang_to_en">на Английский</string>
-    <string name="lang_to_ko">на Корейский</string>
-    <string name="lang_to_ch">на Китайский</string>
+    <string name="lang_to_kz">Казахский</string>
+    <string name="lang_to_ru">Русский</string>
+    <string name="lang_to_en">Английский</string>
+    <string name="lang_to_ko">Корейский</string>
+    <string name="lang_to_ch">Китайский</string>
 
     <string name="title_activity_fullscreen">FullscreenActivity</string>
     <string name="title_activity_login">Sign in</string>
@@ -110,4 +110,5 @@
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
     <string name="invalid_phone_number_format">Неверный формат номера телефона</string>
+    <string name="rate_the_translate">Оцените пожалуйста перевод!</string>
 </resources>

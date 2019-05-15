@@ -9,9 +9,14 @@ import android.widget.Toast;
 
 import com.ftsystem.yel.fts.R;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.HashMap;
 
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
+import kz.ftsystem.yel.fts.backend.MessageEvent;
 import kz.ftsystem.yel.fts.backend.connection.Backend;
 import kz.ftsystem.yel.fts.backend.database.DB;
 import kz.ftsystem.yel.fts.backend.MyConstants;
@@ -55,6 +60,17 @@ public class WaitingTranslatorActivity extends AppCompatActivity implements Swip
                 android.R.color.holo_red_light);
     }
 
+    @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
 
     @Override
     public void fromBackend(HashMap<String, String> data) {
@@ -82,6 +98,10 @@ public class WaitingTranslatorActivity extends AppCompatActivity implements Swip
 
     @Override
     public void onRefresh() {
+        refresh();
+    }
+
+    private void refresh() {
         swipeRefreshLayout.setRefreshing(true);
         DB preferences = new DB(this);
         preferences.open();
@@ -91,6 +111,19 @@ public class WaitingTranslatorActivity extends AppCompatActivity implements Swip
         Backend backend = new Backend(this, this);
         backend.doYouFindTranslator(cid, token, oid);
         preferences.close();
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        if (event.message.equals("1")) {
+            refresh();
+        }
+    }
+
+    // This method will be called when a SomeOtherEvent is posted
+    @Subscribe
+    public void handleSomethingElse(MessageEvent event) {
+//        doSomethingWith(event);
     }
 }
 

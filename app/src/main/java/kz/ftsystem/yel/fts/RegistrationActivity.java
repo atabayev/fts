@@ -7,15 +7,13 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.ftsystem.yel.fts.R;
+import com.google.firebase.FirebaseApp;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
-
 import java.util.HashMap;
 import java.util.concurrent.TimeUnit;
-
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
@@ -45,6 +43,7 @@ public class RegistrationActivity extends AppCompatActivity implements MyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_registration);
         ButterKnife.bind(this);
+        FirebaseApp.initializeApp(this);
 
         mCallbacks = new PhoneAuthProvider.OnVerificationStateChangedCallbacks() {
             @Override
@@ -78,15 +77,17 @@ public class RegistrationActivity extends AppCompatActivity implements MyCallbac
     }
 
 
-    public void onClick(View view) {
+    public void onClickReg(View view) {
         if (!isVerifying) {
             String phNum = phone.getText().toString();
-            PhoneAuthProvider.getInstance().verifyPhoneNumber(phNum,
-                    60, TimeUnit.SECONDS, this, mCallbacks);
-
+            PhoneAuthProvider.getInstance().verifyPhoneNumber(
+                    phNum,
+                    60,
+                    TimeUnit.SECONDS,
+                    this,
+                    mCallbacks);
             isVerifying = true;
         }
-
 
 //        Backend backend = new Backend(this, this);
 //        backend.registration(

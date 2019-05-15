@@ -15,7 +15,10 @@ import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.ftsystem.yel.fts.R;
 
+import org.greenrobot.eventbus.EventBus;
+
 import java.util.HashMap;
+import java.util.Objects;
 
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
 import kz.ftsystem.yel.fts.MainActivity;
@@ -23,6 +26,8 @@ import kz.ftsystem.yel.fts.OrderResultActivity;
 import kz.ftsystem.yel.fts.SplashScreenActivity;
 import kz.ftsystem.yel.fts.TranslatingFinishedActivity;
 import kz.ftsystem.yel.fts.WaitingOrderActivity;
+import kz.ftsystem.yel.fts.backend.MessageEvent;
+import kz.ftsystem.yel.fts.backend.MyApplication;
 import kz.ftsystem.yel.fts.backend.MyConstants;
 import kz.ftsystem.yel.fts.backend.connection.Backend;
 import kz.ftsystem.yel.fts.backend.database.DB;
@@ -41,7 +46,31 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
         }
 
         if (remoteMessage.getNotification() != null) {
-            sendNotification(remoteMessage.getNotification().getTitle());
+            if (((MyApplication) getApplicationContext()).isAppForeground()) {
+                if (Objects.requireNonNull(remoteMessage.getNotification().getTitle()).equals("Заказ обработан") ||
+                        Objects.requireNonNull(remoteMessage.getNotification().getTitle()).equals("Найден переводчик") ||
+                        Objects.requireNonNull(remoteMessage.getNotification().getTitle()).equals("Заказ завершен")) {
+                    EventBus.getDefault().post(new MessageEvent("1"));
+                }
+            } else {
+                String msgTitle = remoteMessage.getNotification().getTitle();
+                String msgBody = remoteMessage.getNotification().getBody();
+//                switch (Objects.requireNonNull(remoteMessage.getNotification().getTitle())) {
+//                    case "Обработан":
+//                        msgTitle = getString(R.string.title_1);
+//                        msgBody = getString(R.string.body_1);
+//                        break;
+//                    case "2":
+//                        msgTitle = getString(R.string.title_2);
+//                        msgBody = getString(R.string.body_2);
+//                        break;
+//                    case "3":
+//                        msgTitle = getString(R.string.title_3);
+//                        msgBody = getString(R.string.body_3);
+//                        break;
+//                }
+                sendNotification(msgTitle, msgBody);
+            }
         }
     }
 
@@ -63,24 +92,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
     }
 
 
-    private void sendNotification(String title) {
-        Log.d(MyConstants.TAG, "send notification");
-        String msgTitle = "";
-        String msgBody = "";
-        switch (title) {
-            case "1":
-                msgTitle = getString(R.string.title_1);
-                msgBody = getString(R.string.body_1);
-                break;
-            case "2":
-                msgTitle = getString(R.string.title_2);
-                msgBody = getString(R.string.body_2);
-                break;
-            case "3":
-                msgTitle = getString(R.string.title_3);
-                msgBody = getString(R.string.body_3);
-                break;
-        }
+    private void sendNotification(String title, String body) {
         Intent intent = new Intent(this, SplashScreenActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
@@ -91,8 +103,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService impleme
         NotificationCompat.Builder notificationBuilder =
                 new NotificationCompat.Builder(this, channelId)
                         .setSmallIcon(R.drawable.ic_exposure_plus_1_black_24dp)
-                        .setContentTitle(msgTitle)
-                        .setContentText(msgBody)
+                        .setContentTitle(title)
+                        .setContentText(body)
                         .setAutoCancel(true)
                         .setSound(defaultSoundUri)
                         .setContentIntent(pendingIntent);

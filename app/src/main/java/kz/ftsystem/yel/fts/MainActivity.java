@@ -16,7 +16,6 @@ import android.util.Log;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ftsystem.yel.fts.R;
@@ -35,10 +34,9 @@ import butterknife.ButterKnife;
 import droidninja.filepicker.FilePickerBuilder;
 import droidninja.filepicker.FilePickerConst;
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
+import kz.ftsystem.yel.fts.backend.MyConstants;
 import kz.ftsystem.yel.fts.backend.connection.Backend;
 import kz.ftsystem.yel.fts.backend.database.DB;
-import kz.ftsystem.yel.fts.backend.MyConstants;
-import kz.ftsystem.yel.fts.backend.services.MyFirebaseMessagingService;
 import stfalcon.universalpickerdialog.UniversalPickerDialog;
 
 
@@ -77,21 +75,27 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         });
 
         ButterKnife.bind(this);
-        materialTextField = findViewById(R.id.materialTextField);
-        materialTextField.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                materialTextField.expand();
-                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
-                assert imm != null;
-                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
-            }
-        });
-        listLangFrom[0] = getString(R.string.lang_from_kz);
-        listLangFrom[1] = getString(R.string.lang_from_ru);
-        listLangFrom[2] = getString(R.string.lang_from_en);
-        listLangFrom[3] = getString(R.string.lang_from_ko);
-        listLangFrom[4] = getString(R.string.lang_from_ch);
+//        materialTextField = findViewById(R.id.materialTextField);
+//        materialTextField.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                materialTextField.expand();
+//                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+//                assert imm != null;
+//                imm.toggleSoftInput(InputMethodManager.SHOW_FORCED, 0);
+//            }
+//        });
+//        listLangFrom[0] = getString(R.string.lang_from_kz);
+//        listLangFrom[1] = getString(R.string.lang_from_ru);
+//        listLangFrom[2] = getString(R.string.lang_from_en);
+//        listLangFrom[3] = getString(R.string.lang_from_ko);
+//        listLangFrom[4] = getString(R.string.lang_from_ch);
+//        listLangTo[0] = getString(R.string.lang_to_kz);
+//        listLangTo[1] = getString(R.string.lang_to_ru);
+//        listLangTo[2] = getString(R.string.lang_to_en);
+//        listLangTo[3] = getString(R.string.lang_to_ko);
+//        listLangTo[4] = getString(R.string.lang_to_ch);
+
         listLangTo[0] = getString(R.string.lang_to_kz);
         listLangTo[1] = getString(R.string.lang_to_ru);
         listLangTo[2] = getString(R.string.lang_to_en);
@@ -115,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                                     .cancelable(false)
                                     .transparentTarget(true)
                                     .textColor(R.color.btnTextColor),
-                            TapTarget.forView(findViewById(R.id.materialTextField), selPageC)
+                            TapTarget.forView(findViewById(R.id.etPagesCount), selPageC)
                                     .dimColor(R.color.dimColor)
                                     .outerCircleColor(R.color.colorAccent)
                                     .targetCircleColor(R.color.colorPrimary)
@@ -171,8 +175,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 .setContentTextColor(getResources().getColor(R.color.colorAccent))
                 .setListener(this)
                 .setInputs(
-                        new UniversalPickerDialog.Input(0, listLangFrom),
-                        new UniversalPickerDialog.Input(2, listLangTo)
+//                        new UniversalPickerDialog.Input(0, listLangFrom),
+                        new UniversalPickerDialog.Input(0, listLangTo)
                 )
                 .show();
     }
@@ -208,8 +212,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     private void checkout() {
         EditText etPageCount = findViewById(R.id.etPagesCount);
         Intent intent = new Intent(this, FinishActivity.class);
-        intent.putExtra("lang", langFrom + " " + langTo);
-        intent.putExtra("pageCount", etPageCount.getText().toString());
+//        intent.putExtra("lang", langFrom + " " + langTo);
+        intent.putExtra("lang", langTo);
+        intent.putExtra("comment", etPageCount.getText().toString());
         intent.putStringArrayListExtra("imgs", imgPaths);
         intent.putStringArrayListExtra("docs", docPaths);
         startActivity(intent);
@@ -311,8 +316,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onPick(int[] selectedValues, int key) {
-        langFrom = listLangFrom[selectedValues[0]];
-        langTo = listLangTo[selectedValues[1]];
+//        langFrom = listLangFrom[selectedValues[0]];
+        langTo = listLangTo[selectedValues[0]];
     }
 
     @Override

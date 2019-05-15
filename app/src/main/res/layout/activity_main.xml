@@ -24,38 +24,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginEnd="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="50dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/bg_btn"
                 android:gravity="center"
                 android:onClick="onClick"
                 android:text="@string/btn_lang_select"
-                android:textColor="@color/btnTextColor"/>
+                android:textColor="@color/btnTextColor" />
 
-            <com.github.florent37.materialtextfield.MaterialTextField
-                android:id="@+id/materialTextField"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
-                android:layout_marginStart="30dp"
-                app:mtf_image="@drawable/ic_content_copy_black_24dp"
-                app:mtf_labelColor="#deb0b4b3">
-
-                <EditText
-                    android:id="@+id/etPagesCount"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginEnd="8sp"
-                    android:layout_marginLeft="8sp"
-                    android:layout_marginRight="8sp"
-                    android:layout_marginStart="8sp"
-                    android:background="@drawable/bg_edit_text"
-                    android:hint="@string/enter_page_count"
-                    android:inputType="number"
-                    android:textColor="@color/tvTextColor"
-                    android:textSize="15sp" />
-            </com.github.florent37.materialtextfield.MaterialTextField>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -70,10 +47,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="10sp"
-                    android:layout_marginLeft="30sp"
-                    android:layout_marginRight="10sp"
                     android:layout_marginStart="30sp"
+                    android:layout_marginLeft="30sp"
+                    android:layout_marginEnd="10sp"
+                    android:layout_marginRight="10sp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_btn"
                     android:gravity="center"
@@ -92,10 +69,10 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginEnd="30sp"
-                    android:layout_marginLeft="10sp"
-                    android:layout_marginRight="30sp"
                     android:layout_marginStart="10sp"
+                    android:layout_marginLeft="10sp"
+                    android:layout_marginEnd="30sp"
+                    android:layout_marginRight="30sp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_btn"
                     android:gravity="center"
@@ -104,21 +81,45 @@
                     android:textColor="@color/btnTextColor" />
             </LinearLayout>
 
+            <!--<com.github.florent37.materialtextfield.MaterialTextField-->
+            <!--android:id="@+id/materialTextField"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginEnd="30dp"-->
+            <!--android:layout_marginStart="30dp"-->
+            <!--app:mtf_image="@drawable/ic_content_copy_black_24dp"-->
+            <!--app:mtf_labelColor="#deb0b4b3">-->
+
+            <!--</com.github.florent37.materialtextfield.MaterialTextField>-->
+
+            <EditText
+                android:id="@+id/etPagesCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30sp"
+                android:layout_marginTop="30sp"
+                android:layout_marginEnd="30sp"
+                android:ems="10"
+                android:hint="@string/enter_page_count"
+                android:inputType="textMultiLine"
+                android:maxLength="300" />
+
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="2sp"
                 android:layout_marginLeft="100sp"
-                android:layout_marginRight="100sp"
                 android:layout_marginTop="50sp"
+                android:layout_marginRight="100sp"
                 android:background="@color/colorAccent" />
 
             <Button
                 android:id="@+id/btnConfirm"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginEnd="30dp"
                 android:layout_marginStart="30dp"
                 android:layout_marginTop="50dp"
+                android:layout_marginEnd="30dp"
                 android:background="@drawable/bg_btn"
                 android:gravity="center"
                 android:onClick="onClick"

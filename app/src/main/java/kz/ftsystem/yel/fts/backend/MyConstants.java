@@ -29,6 +29,6 @@ public class MyConstants {
     public static final int REQUEST_STORAGE_I = 111;
     public static final int REQUEST_STORAGE_D = 222;
 
-    public static final String BASE_URL = "http://151.248.123.14:8000";
-//    public static final String BASE_URL = "http://10.0.3.2:8000/";
+//    public static final String BASE_URL = "http://134.0.115.28:8000";
+    public static final String BASE_URL = "http://10.0.2.2:8000/";
 }

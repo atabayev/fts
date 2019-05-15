@@ -7,10 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.ftsystem.yel.fts.R;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.HashMap;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
+import kz.ftsystem.yel.fts.backend.MessageEvent;
 import kz.ftsystem.yel.fts.backend.connection.Backend;
 import kz.ftsystem.yel.fts.backend.database.DB;
 import kz.ftsystem.yel.fts.backend.MyConstants;
@@ -41,6 +47,18 @@ public class OrderAcceptedActivity extends AppCompatActivity implements MyCallba
     }
 
     @Override
+    protected void onStart() {
+        super.onStart();
+        EventBus.getDefault().register(this);
+    }
+
+    @Override
+    protected void onStop() {
+        super.onStop();
+        EventBus.getDefault().unregister(this);
+    }
+
+    @Override
     public void onBackPressed() {
         DB preferences = new DB(this);
         preferences.open();
@@ -55,12 +73,11 @@ public class OrderAcceptedActivity extends AppCompatActivity implements MyCallba
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    public void onRefresh() {
+        refresh();
     }
 
-    @Override
-    public void onRefresh() {
+    private void refresh() {
         swipeRefreshLayout.setRefreshing(true);
         DB preferences = new DB(this);
         preferences.open();
@@ -103,5 +120,19 @@ public class OrderAcceptedActivity extends AppCompatActivity implements MyCallba
                 Toast.makeText(this, R.string.error_send, Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMessageEvent(MessageEvent event) {
+        if (event.message.equals("1")) {
+            refresh();
+        }
+
+    }
+
+    // This method will be called when a SomeOtherEvent is posted
+    @Subscribe
+    public void handleSomethingElse(MessageEvent event) {
+//        doSomethingWith(event);
     }
 }

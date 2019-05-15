@@ -37,7 +37,7 @@ import java.util.HashMap;
 
 public class FinishActivity extends AppCompatActivity implements MyCallback {
 
-    private String lang, pageCount;
+    private String lang, comment;
     private ArrayList<String> imgPaths = new ArrayList<>();
     ArrayList<String> docPaths = new ArrayList<>();
     private ArrayList<ImageView> images = new ArrayList<>();
@@ -65,7 +65,7 @@ public class FinishActivity extends AppCompatActivity implements MyCallback {
         setContentView(R.layout.activity_finish);
         ButterKnife.bind(this);
         lang = getIntent().getStringExtra("lang");
-        pageCount = getIntent().getStringExtra("pageCount");
+        comment = getIntent().getStringExtra("comment");
         imgPaths = getIntent().getStringArrayListExtra("imgs");
         docPaths = getIntent().getStringArrayListExtra("docs");
 
@@ -73,7 +73,7 @@ public class FinishActivity extends AppCompatActivity implements MyCallback {
         lParams.setMargins(8, 8, 8, 8);
         lParams.width = 500;
         lParams.height = 500;
-        lParams.gravity = Gravity.LEFT;
+        lParams.gravity = Gravity.START;
 
         progressBar.setVisibility(ProgressBar.INVISIBLE);
         tvPgBar.setVisibility(TextView.INVISIBLE);
@@ -157,16 +157,16 @@ public class FinishActivity extends AppCompatActivity implements MyCallback {
             j++;
         }
         TextView tvLang = findViewById(R.id.tvLang);
-        TextView tvPageCount = findViewById(R.id.tvPageCount);
-        tvLang.setText(getIntent().getStringExtra("lang"));
-        tvPageCount.setText(getIntent().getStringExtra("pageCount"));
+        TextView tvComment = findViewById(R.id.etComment);
+        tvLang.setText(lang);
+        tvComment.setText(comment);
     }
 
     public void onClick(View view) {
         Backend backend = new Backend(this, this);
         progressBar.setVisibility(ProgressBar.VISIBLE);
         tvPgBar.setVisibility(TextView.VISIBLE);
-        backend.sendingData(imgPaths, lang, pageCount);
+        backend.sendingData(imgPaths, lang, comment);
         btnOrder.setEnabled(false);
     }
 
@@ -209,6 +209,7 @@ public class FinishActivity extends AppCompatActivity implements MyCallback {
                 Intent intent = new Intent(this, OrderAcceptedActivity.class);
                 startActivity(intent);
                 preferences.close();
+                finish();
                 break;
         }
     }

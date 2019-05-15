@@ -9,10 +9,15 @@ import android.widget.Toast;
 
 import com.ftsystem.yel.fts.R;
 
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 import java.util.HashMap;
 
 import butterknife.ButterKnife;
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
+import kz.ftsystem.yel.fts.backend.MessageEvent;
 import kz.ftsystem.yel.fts.backend.connection.Backend;
 import kz.ftsystem.yel.fts.backend.database.DB;
 import kz.ftsystem.yel.fts.backend.MyConstants;
@@ -58,6 +63,7 @@ public class OrderResultActivity extends AppCompatActivity implements MyCallback
         }
 
     }
+
 
     public void onClick(View view) {
         DB preferences = new DB(this);
@@ -106,6 +112,8 @@ public class OrderResultActivity extends AppCompatActivity implements MyCallback
                 break;
             case "cancel_ok":
                 Toast.makeText(this, R.string.ora_order_canceled, Toast.LENGTH_SHORT).show();
+                Intent intent1 = new Intent(this, MainActivity.class);
+                startActivity(intent1);
                 finish();
                 break;
             case "denied":
