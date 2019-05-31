@@ -2,7 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@color/activityBg"
+    android:background="@drawable/background"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="kz.ftsystem.yel.fts.WaitingTranslatorActivity">
@@ -37,26 +37,32 @@
                 <TableLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:paddingStart="@dimen/dim_10sp"
-                    android:paddingLeft="@dimen/dim_10sp"
-                    android:paddingTop="@dimen/dim_10sp"
-                    android:paddingEnd="@dimen/dim_10sp"
-                    android:paddingRight="@dimen/dim_10sp"
-                    android:paddingBottom="@dimen/dim_10sp"
+                    android:paddingStart="5sp"
+                    android:paddingLeft="5sp"
+                    android:paddingTop="5sp"
+                    android:paddingEnd="5sp"
+                    android:paddingRight="5sp"
+                    android:paddingBottom="5sp"
+                    android:layout_marginStart="@dimen/dim_10sp"
+                    android:layout_marginEnd="@dimen/dim_10sp"
+                    android:layout_marginTop="@dimen/dim_10sp"
+                    android:layout_marginBottom="@dimen/dim_10sp"
+                    android:background="@drawable/border"
                     android:stretchColumns="*">
 
                     <TableRow
-                        android:background="@color/tvTextColor"
-                        android:paddingStart="40sp"
-                        android:paddingLeft="40sp"
-                        android:paddingEnd="40sp"
-                        android:paddingRight="40sp">
+                        android:background="@color/tvHintTextColor"
+                        android:paddingStart="@dimen/dim_10sp"
+                        android:paddingLeft="@dimen/dim_10sp"
+                        android:paddingEnd="@dimen/dim_10sp"
+                        android:paddingRight="@dimen/dim_10sp">
 
                         <TextView
                             android:id="@+id/wtaID"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dim_8sp"
+                            android:fontFamily="@font/caviar_dreams"
                             android:text="@string/oaa_id"
                             android:textColor="@color/activityBg"
                             android:textSize="@dimen/dim_14sp" />
@@ -65,24 +71,25 @@
                             android:id="@+id/wtaIdText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dim_10sp"
+                            android:fontFamily="@font/caviar_dreams"
                             android:text="20180306301"
                             android:textColor="@color/activityBg"
                             android:textSize="@dimen/dim_14sp" />
                     </TableRow>
 
                     <TableRow
-                        android:background="@color/tvHintTextColor"
-                        android:paddingStart="40sp"
-                        android:paddingLeft="40sp"
-                        android:paddingEnd="40sp"
-                        android:paddingRight="40sp">
+                        android:background="@color/tvTextColor"
+                        android:paddingStart="@dimen/dim_10sp"
+                        android:paddingLeft="@dimen/dim_10sp"
+                        android:paddingEnd="@dimen/dim_10sp"
+                        android:paddingRight="@dimen/dim_10sp">
 
                         <TextView
                             android:id="@+id/wtaLang"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dim_8sp"
+                            android:fontFamily="@font/caviar_dreams"
                             android:text="@string/oaa_lang"
                             android:textColor="@color/activityBg"
                             android:textSize="@dimen/dim_14sp" />
@@ -91,24 +98,25 @@
                             android:id="@+id/wtaLangText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dim_10sp"
+                            android:fontFamily="@font/caviar_dreams"
                             android:text="с Казахского на Корейский"
                             android:textColor="@color/activityBg"
                             android:textSize="@dimen/dim_14sp" />
                     </TableRow>
 
                     <TableRow
-                        android:background="@color/tvTextColor"
-                        android:paddingStart="40sp"
-                        android:paddingLeft="40sp"
-                        android:paddingEnd="40sp"
-                        android:paddingRight="40sp">
+                        android:background="@color/tvHintTextColor"
+                        android:paddingStart="@dimen/dim_10sp"
+                        android:paddingLeft="@dimen/dim_10sp"
+                        android:paddingEnd="@dimen/dim_10sp"
+                        android:paddingRight="@dimen/dim_10sp">
 
                         <TextView
                             android:id="@+id/wtaPagesCount"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dim_8sp"
+                            android:fontFamily="@font/caviar_dreams"
                             android:text="@string/oaa_pages_count"
                             android:textColor="@color/activityBg"
                             android:textSize="@dimen/dim_14sp" />
@@ -117,24 +125,25 @@
                             android:id="@+id/wtaPagesCountText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dim_10sp"
+                            android:fontFamily="@font/caviar_dreams"
                             android:text="20"
                             android:textColor="@color/activityBg"
                             android:textSize="@dimen/dim_14sp" />
                     </TableRow>
 
                     <TableRow
-                        android:background="@color/tvHintTextColor"
-                        android:paddingStart="40sp"
-                        android:paddingLeft="40sp"
-                        android:paddingEnd="40sp"
-                        android:paddingRight="40sp">
+                        android:background="@color/tvTextColor"
+                        android:paddingStart="@dimen/dim_10sp"
+                        android:paddingLeft="@dimen/dim_10sp"
+                        android:paddingEnd="@dimen/dim_10sp"
+                        android:paddingRight="@dimen/dim_10sp">
 
                         <TextView
                             android:id="@+id/wtaPrice"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dim_8sp"
+                            android:fontFamily="@font/caviar_dreams"
                             android:text="@string/oaa_price"
                             android:textColor="@color/activityBg"
                             android:textSize="@dimen/dim_14sp" />
@@ -143,24 +152,25 @@
                             android:id="@+id/wtaPriceText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dim_10sp"
+                            android:fontFamily="@font/caviar_dreams"
                             android:text="100000 тенге"
                             android:textColor="@color/activityBg"
                             android:textSize="@dimen/dim_14sp" />
                     </TableRow>
 
                     <TableRow
-                        android:background="@color/tvTextColor"
-                        android:paddingStart="40sp"
-                        android:paddingLeft="40sp"
-                        android:paddingEnd="40sp"
-                        android:paddingRight="40sp">
+                        android:background="@color/tvHintTextColor"
+                        android:paddingStart="@dimen/dim_10sp"
+                        android:paddingLeft="@dimen/dim_10sp"
+                        android:paddingEnd="@dimen/dim_10sp"
+                        android:paddingRight="@dimen/dim_10sp">
 
                         <TextView
                             android:id="@+id/wtaDateEnd"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dim_8sp"
+                            android:fontFamily="@font/caviar_dreams"
                             android:text="@string/oaa_date_end"
                             android:textColor="@color/activityBg"
                             android:textSize="@dimen/dim_14sp" />
@@ -169,24 +179,25 @@
                             android:id="@+id/wtaDateEndText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dim_10sp"
+                            android:fontFamily="@font/caviar_dreams"
                             android:text="01.12.2018"
                             android:textColor="@color/activityBg"
                             android:textSize="@dimen/dim_14sp" />
                     </TableRow>
 
                     <TableRow
-                        android:background="@color/tvHintTextColor"
-                        android:paddingStart="40sp"
-                        android:paddingLeft="40sp"
-                        android:paddingEnd="40sp"
-                        android:paddingRight="40sp">
+                        android:background="@color/tvTextColor"
+                        android:paddingStart="@dimen/dim_10sp"
+                        android:paddingLeft="@dimen/dim_10sp"
+                        android:paddingEnd="@dimen/dim_10sp"
+                        android:paddingRight="@dimen/dim_10sp">
 
                         <TextView
                             android:id="@+id/wtaUrgency"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="@dimen/dim_8sp"
+                            android:fontFamily="@font/caviar_dreams"
                             android:text="@string/oaa_urgency"
                             android:textColor="@color/activityBg"
                             android:textSize="@dimen/dim_14sp" />
@@ -195,7 +206,7 @@
                             android:id="@+id/wtaUrgencyText"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="@dimen/dim_10sp"
+                            android:fontFamily="@font/caviar_dreams"
                             android:text="Обычная"
                             android:textColor="@color/activityBg"
                             android:textSize="@dimen/dim_14sp" />

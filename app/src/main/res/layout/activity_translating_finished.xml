@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activityBg"
+    android:background="@drawable/background"
     tools:context="kz.ftsystem.yel.fts.TranslatingFinishedActivity">
 
     <LinearLayout
@@ -21,9 +21,11 @@
             android:layout_marginEnd="@dimen/dim_8sp"
             android:layout_marginBottom="10sp"
             android:background="@color/bg_gray"
+            android:fontFamily="@font/caviar_dreams"
             android:gravity="center"
             android:text="@string/tf_order_completed"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
 
 
         <!--<Button-->
@@ -49,10 +51,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/rate_the_translate"
             android:layout_marginTop="30sp"
+            android:fontFamily="@font/caviar_dreams"
+            android:text="@string/rate_the_translate"
+            android:textColor="@color/color_white"
             android:textSize="20sp"
-            android:textColor="@color/color_white"/>
+            android:textStyle="bold" />
 
 
        <RatingBar

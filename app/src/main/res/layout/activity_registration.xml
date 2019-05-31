@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activityBg"
+    android:background="@drawable/background"
     tools:context="kz.ftsystem.yel.fts.RegistrationActivity">
 
     <ScrollView
@@ -20,13 +20,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="30sp"
-                android:layout_marginRight="30sp"
                 android:layout_marginTop="30sp"
-                android:fontFamily="@font/exo_medium"
+                android:layout_marginRight="30sp"
+                android:fontFamily="@font/caviar_dreams"
                 android:gravity="center"
                 android:text="@string/registration"
                 android:textColor="@color/bg_gray"
-                android:textSize="20sp" />
+                android:textSize="20sp"
+                android:textStyle="bold" />
 
             <!--<EditText-->
                 <!--android:id="@+id/regName"-->
@@ -52,15 +53,17 @@
                     android:id="@+id/regName"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30sp"
+                    android:layout_marginEnd="30sp"
+                    android:layout_marginBottom="10sp"
+                    android:fontFamily="@font/caviar_dreams"
                     android:hint="@string/name"
                     android:inputType="textAutoComplete"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:layout_marginStart="30sp"
-                    android:layout_marginEnd="30sp"
-                    android:layout_marginBottom="10sp"
+                    android:textColor="@color/bg_gray"
                     android:textColorHint="@color/colorAccent"
-                    android:textColor="@color/bg_gray"/>
+                    android:textSize="18sp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -87,15 +90,17 @@
                     android:id="@+id/regSurename"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30sp"
+                    android:layout_marginEnd="30sp"
+                    android:layout_marginBottom="10sp"
+                    android:fontFamily="@font/caviar_dreams"
                     android:hint="@string/surname"
                     android:inputType="textAutoComplete"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:layout_marginStart="30sp"
-                    android:layout_marginEnd="30sp"
-                    android:layout_marginBottom="10sp"
+                    android:textColor="@color/bg_gray"
                     android:textColorHint="@color/colorAccent"
-                    android:textColor="@color/bg_gray"/>
+                    android:textSize="18sp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -123,15 +128,17 @@
                     android:id="@+id/regEMAIL"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30sp"
+                    android:layout_marginEnd="30sp"
+                    android:layout_marginBottom="10sp"
+                    android:fontFamily="@font/caviar_dreams"
                     android:hint="@string/email"
                     android:inputType="textEmailAddress"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:layout_marginStart="30sp"
-                    android:layout_marginEnd="30sp"
-                    android:layout_marginBottom="10sp"
+                    android:textColor="@color/bg_gray"
                     android:textColorHint="@color/colorAccent"
-                    android:textColor="@color/bg_gray"/>
+                    android:textSize="18sp" />
 
             </android.support.design.widget.TextInputLayout>
 
@@ -159,32 +166,49 @@
                     android:id="@+id/regTelNum"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="30sp"
+                    android:layout_marginEnd="30sp"
+                    android:layout_marginBottom="10sp"
+                    android:fontFamily="@font/caviar_dreams"
                     android:hint="@string/tel_number"
                     android:inputType="phone"
                     android:maxLines="1"
                     android:singleLine="true"
-                    android:layout_marginStart="30sp"
-                    android:layout_marginEnd="30sp"
-                    android:layout_marginBottom="10sp"
+                    android:textColor="@color/bg_gray"
                     android:textColorHint="@color/colorAccent"
-                    android:textColor="@color/bg_gray"/>
+                    android:textSize="18sp"
+                    android:text="+7 ("/>
 
             </android.support.design.widget.TextInputLayout>
+
+            <ProgressBar
+                android:id="@+id/progressBar"
+                style="?android:attr/progressBarStyle"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="invisible"/>
 
             <Button
                 android:id="@+id/createAcc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="8sp"
                 android:layout_marginLeft="30sp"
-                android:layout_marginRight="30sp"
                 android:layout_marginTop="30sp"
+                android:layout_marginRight="30sp"
+                android:layout_marginBottom="8sp"
                 android:background="@drawable/bg_btn"
+                android:fontFamily="@font/caviar_dreams"
                 android:onClick="onClickReg"
                 android:text="@string/create_account"
-                android:textColor="@color/btnTextColor"/>
+                android:textColor="@color/btnTextColor"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
+
 
         </LinearLayout>
     </ScrollView>
+
+
 
 </android.support.constraint.ConstraintLayout>

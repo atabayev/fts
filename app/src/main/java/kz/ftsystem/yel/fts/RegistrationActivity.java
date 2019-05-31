@@ -5,7 +5,9 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 import com.ftsystem.yel.fts.R;
 import com.google.firebase.FirebaseApp;
@@ -20,6 +22,10 @@ import kz.ftsystem.yel.fts.Interfaces.MyCallback;
 import kz.ftsystem.yel.fts.backend.connection.Backend;
 import kz.ftsystem.yel.fts.backend.database.DB;
 import kz.ftsystem.yel.fts.backend.MyConstants;
+import ru.tinkoff.decoro.MaskImpl;
+import ru.tinkoff.decoro.slots.PredefinedSlots;
+import ru.tinkoff.decoro.watchers.FormatWatcher;
+import ru.tinkoff.decoro.watchers.MaskFormatWatcher;
 
 
 public class RegistrationActivity extends AppCompatActivity implements MyCallback {
@@ -32,6 +38,10 @@ public class RegistrationActivity extends AppCompatActivity implements MyCallbac
     EditText email;
     @BindView(R.id.regTelNum)
     EditText phone;
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+    @BindView(R.id.createAcc)
+    Button btnCreateAcc;
 
     Boolean isVerifying = false;
     String myVerificationId = "";
@@ -50,13 +60,14 @@ public class RegistrationActivity extends AppCompatActivity implements MyCallbac
             public void onVerificationCompleted(PhoneAuthCredential phoneAuthCredential) {
                 Log.d(MyConstants.TAG, "onVerificationCompleted " + phoneAuthCredential);
                 isVerifying = false;
-
+                progressBar.setVisibility(ProgressBar.INVISIBLE);
             }
 
             @Override
             public void onVerificationFailed(FirebaseException e) {
                 Log.d(MyConstants.TAG, "onVerificationFailed " + e.getMessage());
                 isVerifying = false;
+                progressBar.setVisibility(ProgressBar.INVISIBLE);
                 Toast.makeText(RegistrationActivity.this, getString(R.string.invalid_phone_number_format), Toast.LENGTH_SHORT).show();
             }
 
@@ -66,6 +77,7 @@ public class RegistrationActivity extends AppCompatActivity implements MyCallbac
                 Log.d(MyConstants.TAG, "onCodeSent " + verificationId);
                 isVerifying = false;
                 myVerificationId = verificationId;
+                progressBar.setVisibility(ProgressBar.INVISIBLE);
                 Intent intent = new Intent(RegistrationActivity.this, CodeEntry2Activity.class);
                 intent.putExtra("name", name.getText().toString());
                 intent.putExtra("surname", surname.getText().toString());
@@ -74,12 +86,24 @@ public class RegistrationActivity extends AppCompatActivity implements MyCallbac
                 startActivity(intent);
             }
         };
+
+        FormatWatcher formatWatcher = new MaskFormatWatcher(
+                MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER)
+        );
+        formatWatcher.installOn(phone);
     }
 
 
     public void onClickReg(View view) {
+        btnCreateAcc.setEnabled(false);
+        progressBar.setVisibility(ProgressBar.VISIBLE);
         if (!isVerifying) {
-            String phNum = phone.getText().toString();
+            String phNum = "+7" +
+                    phone.getText().toString().substring(4, 7) +
+                    phone.getText().toString().substring(9, 12) +
+                    phone.getText().toString().substring(13, 15) +
+                    phone.getText().toString().substring(16, 18);
+            Toast.makeText(this, phNum, Toast.LENGTH_LONG).show();
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     phNum,
                     60,

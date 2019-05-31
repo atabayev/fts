@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activityBg"
+    android:background="@drawable/background"
     tools:context="kz.ftsystem.yel.fts.CodeEntry2Activity">
 
     <LinearLayout
@@ -13,7 +13,6 @@
         android:gravity="center"
         android:orientation="vertical">
 
-
         <EditText
             android:id="@+id/etCode"
             android:layout_width="match_parent"
@@ -21,13 +20,14 @@
             android:layout_gravity="center"
             android:layout_marginStart="30sp"
             android:layout_marginEnd="30sp"
+            android:fontFamily="@font/caviar_dreams"
             android:gravity="center"
-            android:hint="Activation Code"
+            android:hint="@string/activation_code"
             android:inputType="number"
             android:selectAllOnFocus="false"
             android:singleLine="false"
-            android:textSize="20sp" />
-
+            android:textSize="20sp"
+            android:textStyle="bold" />
 
         <Button
             android:id="@+id/btnCheck"
@@ -37,10 +37,12 @@
             android:layout_marginTop="30dp"
             android:layout_marginEnd="30dp"
             android:background="@drawable/bg_btn"
+            android:fontFamily="@font/caviar_dreams"
             android:gravity="center"
             android:text="@string/btn_confirm"
-            android:textColor="@color/btnTextColor" />
-
+            android:textColor="@color/btnTextColor"
+            android:textSize="18sp"
+            android:textStyle="bold|italic" />
 
     </LinearLayout>
 

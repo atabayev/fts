@@ -4,6 +4,7 @@ package kz.ftsystem.yel.fts;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -15,6 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthProvider;
 
 import java.util.HashMap;
+import java.util.SimpleTimeZone;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -22,6 +24,10 @@ import kz.ftsystem.yel.fts.Interfaces.MyCallback;
 import kz.ftsystem.yel.fts.backend.connection.Backend;
 import kz.ftsystem.yel.fts.backend.database.DB;
 import kz.ftsystem.yel.fts.backend.MyConstants;
+import ru.tinkoff.decoro.MaskImpl;
+import ru.tinkoff.decoro.slots.PredefinedSlots;
+import ru.tinkoff.decoro.watchers.FormatWatcher;
+import ru.tinkoff.decoro.watchers.MaskFormatWatcher;
 
 public class AuthenticationActivity extends AppCompatActivity implements MyCallback {
 
@@ -55,6 +61,11 @@ public class AuthenticationActivity extends AppCompatActivity implements MyCallb
         if (savedInstanceState != null) {
             onRestoreInstanceState(savedInstanceState);
         }
+
+        FormatWatcher formatWatcher = new MaskFormatWatcher(
+                MaskImpl.createTerminated(PredefinedSlots.RUS_PHONE_NUMBER)
+        );
+        formatWatcher.installOn(phoneNum);
     }
 
 
@@ -82,7 +93,10 @@ public class AuthenticationActivity extends AppCompatActivity implements MyCallb
     public void onClick(View view) {
         switch (view.getId()) {
             case R.id.btnEnter:
-//                startPhoneNumberVerification(phoneNum.getText().toString());
+                String editedPhoneNumber = phoneNum.getText().toString().substring(4, 7) +
+                        phoneNum.getText().toString().substring(9, 12) +
+                        phoneNum.getText().toString().substring(13, 15) +
+                        phoneNum.getText().toString().substring(16, 18);
                 if (phoneNum.getText().toString().isEmpty()) {
                     phoneNum.setError(getResources().getString(R.string.enter_phone_num));
                     break;
@@ -97,7 +111,7 @@ public class AuthenticationActivity extends AppCompatActivity implements MyCallb
                 preferences.setVariable(MyConstants.MY_PHONE_NUM, phoneNum.getText().toString());
                 preferences.close();
                 Backend backend = new Backend(this, this);
-                backend.authentication(phoneNum.getText().toString());
+                backend.authentication(editedPhoneNumber);
                 break;
             case R.id.btnReg:
                 Intent intent = new Intent(this, RegistrationActivity.class);

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/activityBg"
+    android:background="@drawable/background"
     android:orientation="vertical"
     tools:context="kz.ftsystem.yel.fts.MainActivity">
 
@@ -28,10 +28,15 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="30dp"
                 android:background="@drawable/bg_btn"
+                android:fontFamily="@font/caviar_dreams"
                 android:gravity="center"
                 android:onClick="onClick"
+                android:paddingTop="10sp"
+                android:paddingBottom="10sp"
                 android:text="@string/btn_lang_select"
-                android:textColor="@color/btnTextColor" />
+                android:textColor="@color/btnTextColor"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
 
 
             <LinearLayout
@@ -48,15 +53,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="30sp"
-                    android:layout_marginLeft="30sp"
                     android:layout_marginEnd="10sp"
-                    android:layout_marginRight="10sp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_btn"
+                    android:fontFamily="@font/caviar_dreams"
                     android:gravity="center"
                     android:onClick="onClick"
+                    android:paddingTop="10sp"
+                    android:paddingBottom="10sp"
                     android:text="@string/btn_gallery"
-                    android:textColor="@color/btnTextColor" />
+                    android:textColor="@color/btnTextColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
 
                 <View
                     android:layout_width="2sp"
@@ -70,15 +78,18 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginStart="10sp"
-                    android:layout_marginLeft="10sp"
                     android:layout_marginEnd="30sp"
-                    android:layout_marginRight="30sp"
                     android:layout_weight="1"
                     android:background="@drawable/bg_btn"
+                    android:fontFamily="@font/caviar_dreams"
                     android:gravity="center"
                     android:onClick="onClick"
+                    android:paddingTop="10sp"
+                    android:paddingBottom="10sp"
                     android:text="@string/btn_docs"
-                    android:textColor="@color/btnTextColor" />
+                    android:textColor="@color/btnTextColor"
+                    android:textSize="18sp"
+                    android:textStyle="bold|italic" />
             </LinearLayout>
 
             <!--<com.github.florent37.materialtextfield.MaterialTextField-->
@@ -100,9 +111,11 @@
                 android:layout_marginTop="30sp"
                 android:layout_marginEnd="30sp"
                 android:ems="10"
+                android:fontFamily="@font/caviar_dreams"
                 android:hint="@string/enter_page_count"
                 android:inputType="textMultiLine"
-                android:maxLength="300" />
+                android:maxLength="300"
+                android:textStyle="italic" />
 
 
             <View
@@ -121,10 +134,15 @@
                 android:layout_marginTop="50dp"
                 android:layout_marginEnd="30dp"
                 android:background="@drawable/bg_btn"
+                android:fontFamily="@font/caviar_dreams"
                 android:gravity="center"
                 android:onClick="onClick"
+                android:paddingTop="10sp"
+                android:paddingBottom="10sp"
                 android:text="@string/btn_confirm"
-                android:textColor="@color/btnTextColor" />
+                android:textColor="@color/btnTextColor"
+                android:textSize="18sp"
+                android:textStyle="bold|italic" />
         </LinearLayout>
     </ScrollView>
 

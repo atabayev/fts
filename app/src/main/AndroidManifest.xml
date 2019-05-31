@@ -83,9 +83,6 @@
             </intent-filter>
         </service>
 
-        <activity
-            android:name="kz.ftsystem.yel.fts.AuthActivity"
-            android:label="@string/title_activity_auth" />
     </application>
 
 </manifest>
