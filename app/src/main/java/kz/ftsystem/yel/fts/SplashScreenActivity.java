@@ -42,6 +42,7 @@ public class SplashScreenActivity extends AppCompatActivity implements MyCallbac
         } else {
             Intent intent = new Intent(this, AuthenticationActivity.class);
             startActivity(intent);
+            finish();
         }
         preferences.close();
     }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "567222563883-shg7546crs4acrt2s209qqaq2fia8029.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.ftsystem.yel.fts",
+            "certificate_hash": "ec4fdab2d0aa14169e5f002ff8da83ee71878f11"
+          }
+        },
+        {
           "client_id": "567222563883-nnonnhraksafnjsp48p2aglkvct5efjq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
@@ -115,6 +123,14 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "567222563883-5li9sgjaoe80dm8itar6v5f62cuvo9cq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.ftsystem.yel.ftst",
+            "certificate_hash": "24bbcfa1eeaad7b198c940af78ac1d7fac2ce7c5"
+          }
+        },
         {
           "client_id": "567222563883-7kmqn7ft3u5tvuvfr97j7os45vd8tfdu.apps.googleusercontent.com",
           "client_type": 1,

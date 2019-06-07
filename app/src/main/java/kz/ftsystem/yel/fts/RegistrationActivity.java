@@ -78,6 +78,7 @@ public class RegistrationActivity extends AppCompatActivity implements MyCallbac
                 isVerifying = false;
                 myVerificationId = verificationId;
                 progressBar.setVisibility(ProgressBar.INVISIBLE);
+                btnCreateAcc.setEnabled(true);
                 Intent intent = new Intent(RegistrationActivity.this, CodeEntry2Activity.class);
                 intent.putExtra("name", name.getText().toString());
                 intent.putExtra("surname", surname.getText().toString());
@@ -103,7 +104,6 @@ public class RegistrationActivity extends AppCompatActivity implements MyCallbac
                     phone.getText().toString().substring(9, 12) +
                     phone.getText().toString().substring(13, 15) +
                     phone.getText().toString().substring(16, 18);
-            Toast.makeText(this, phNum, Toast.LENGTH_LONG).show();
             PhoneAuthProvider.getInstance().verifyPhoneNumber(
                     phNum,
                     60,
