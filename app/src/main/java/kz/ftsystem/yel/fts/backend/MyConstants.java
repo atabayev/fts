@@ -11,6 +11,7 @@ public class MyConstants {
     public static final String MY_ID = "my_id";
     public static final String MY_TOKEN = "my_token";
     public static final String MY_PHONE_NUM = "my_phone_num";
+    public static final String MY_IP_ADDR = "my_ip_addr";
     public static final String SHOW_TRAINING = "show_training";
     public static final String AUTO_ENTER = "auto_enter";
     public static final String IS_ORDERED = "is_ordered";
@@ -24,6 +25,9 @@ public class MyConstants {
     public static final String MY_ORDER_PRICE = "my_order_price";
     public static final String MY_ORDER_DATE_END = "my_order_date_end";
     public static final String MY_ORDER_URGENCY = "my_order_urgency";
+
+
+    public static final String MERCHANT_PUBLIC_ID = "pk_aac81032584d2d7c9ebc09c85591b"; // Test host
 
 
     public static final int REQUEST_STORAGE_I = 111;

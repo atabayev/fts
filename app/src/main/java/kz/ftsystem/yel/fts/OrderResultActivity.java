@@ -2,22 +2,19 @@ package kz.ftsystem.yel.fts;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.ftsystem.yel.fts.R;
 
-import org.greenrobot.eventbus.EventBus;
-import org.greenrobot.eventbus.Subscribe;
-import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.HashMap;
 
 import butterknife.ButterKnife;
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
-import kz.ftsystem.yel.fts.backend.MessageEvent;
 import kz.ftsystem.yel.fts.backend.connection.Backend;
 import kz.ftsystem.yel.fts.backend.database.DB;
 import kz.ftsystem.yel.fts.backend.MyConstants;
@@ -72,12 +69,15 @@ public class OrderResultActivity extends AppCompatActivity implements MyCallback
         String token = preferences.getVariable(MyConstants.MY_TOKEN);
         String oid = preferences.getVariable(MyConstants.ORDER_ID);
         preferences.close();
-        Backend backend = new Backend(this, this);
         switch (view.getId()) {
             case R.id.oraBtnAccept:
-                backend.makeAnOrder(cid, token, oid);
+                Intent intent = new Intent(this, CheckoutActivity.class);
+                intent.putExtra("amount", tvPrice.getText().toString());
+                startActivity(intent);
+                finish();
                 break;
             case R.id.oraBtnCancel:
+                Backend backend = new Backend(this, this);
                 backend.cancelOrder(cid, token, oid);
                 break;
         }
@@ -94,22 +94,22 @@ public class OrderResultActivity extends AppCompatActivity implements MyCallback
                 tvDateEnd.setText(data.get("dateEnd"));
                 tvUrgency.setText(data.get("urgency"));
                 break;
-            case "ok":
-                DB preferences = new DB(this);
-                preferences.open();
-                preferences.setVariable(MyConstants.IS_ORDERED, "0");
-                preferences.setVariable(MyConstants.MAKE_ORDER, "1");
-                preferences.setVariable(MyConstants.MY_ORDER_ID, tvId.getText().toString());
-                preferences.setVariable(MyConstants.MY_ORDER_LANG, tvLanguage.getText().toString());
-                preferences.setVariable(MyConstants.MY_ORDER_PAGE_COUNT, tvPagesCount.getText().toString());
-                preferences.setVariable(MyConstants.MY_ORDER_PRICE, tvPrice.getText().toString());
-                preferences.setVariable(MyConstants.MY_ORDER_DATE_END, tvDateEnd.getText().toString());
-                preferences.setVariable(MyConstants.MY_ORDER_URGENCY, tvUrgency.getText().toString());
-                preferences.close();
-                Intent intent = new Intent(this, WaitingTranslatorActivity.class);
-                startActivity(intent);
-                finish();
-                break;
+//            case "ok":
+//                DB preferences = new DB(this);
+//                preferences.open();
+//                preferences.setVariable(MyConstants.IS_ORDERED, "0");
+//                preferences.setVariable(MyConstants.MAKE_ORDER, "1");
+//                preferences.setVariable(MyConstants.MY_ORDER_ID, tvId.getText().toString());
+//                preferences.setVariable(MyConstants.MY_ORDER_LANG, tvLanguage.getText().toString());
+//                preferences.setVariable(MyConstants.MY_ORDER_PAGE_COUNT, tvPagesCount.getText().toString());
+//                preferences.setVariable(MyConstants.MY_ORDER_PRICE, tvPrice.getText().toString());
+//                preferences.setVariable(MyConstants.MY_ORDER_DATE_END, tvDateEnd.getText().toString());
+//                preferences.setVariable(MyConstants.MY_ORDER_URGENCY, tvUrgency.getText().toString());
+//                preferences.close();
+//                Intent intent = new Intent(this, WaitingTranslatorActivity.class);
+//                startActivity(intent);
+//                finish();
+//                break;
             case "cancel_ok":
                 Toast.makeText(this, R.string.ora_order_canceled, Toast.LENGTH_SHORT).show();
                 Intent intent1 = new Intent(this, MainActivity.class);

@@ -50,3 +50,4 @@ public class ServerResponse {
         this.token = token;
     }
 }
+

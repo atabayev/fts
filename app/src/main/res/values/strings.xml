@@ -24,6 +24,27 @@
     <string name="logo">Логотип</string>
     <string name="sw_remember">Запомнить  </string>
 
+
+    <!-- Checkout Activity -->
+    <string name="checkout_title" translatable="false">Оплата</string>
+    <string name="checkout_description" translatable="false">Так выглядят платежи через CloudPayments для покупателей в мобильном приложении. Платеж тестовый — деньги тратить не придется. Мы не ограничиваем своих клиентов в использовании какой либо определенной формы для ввода карточных данных, вы можете создать любую форму которая будет полностью соответсвовать дизайну вашего приложения.</string>
+    <string name="checkout_total" translatable="false">Всего к оплате:</string>
+    <string name="checkout_card_number" translatable="false">Номер карты</string>
+    <string name="checkout_card_date" translatable="false">MM/YY</string>
+    <string name="checkout_card_cvc" translatable="false">CVC</string>
+    <string name="checkout_card_holder" translatable="false">Владелец карты</string>
+    <string name="checkout_payment" translatable="false">Оплатить</string>
+    <string name="checkout_or" translatable="false">или</string>
+
+    <string name="main_phone" translatable="false">+7 495 374-78-60</string>
+    <string name="main_email" translatable="false">sales@cloudpayments.ru</string>
+
+    <!--Payment errors-->
+    <string name="checkout_error_card_number" translatable="false">Номер карты некорректен</string>
+    <string name="checkout_error_card_date" translatable="false">Срок действитя некорректен либо истек</string>
+    <string name="checkout_error_card_cvc" translatable="false">Некорректный CVC код</string>
+
+
     <string name="invalid_login">Введенный номер не зарегестрирован!</string>
     <string name="cant_create_acc">Не удалось создать аккаунт, попробуйте позже.</string>
     <string name="reg_record_exists">Аккаунт с данным номером телефона зарегестрирован!</string>
@@ -112,4 +133,5 @@
     <string name="invalid_phone_number_format">Неверный формат номера телефона</string>
     <string name="rate_the_translate">Оцените пожалуйста перевод!</string>
     <string name="activation_code">Код с СМС</string>
+    <string name="title_activity_checkout">CheckoutActivity</string>
 </resources>

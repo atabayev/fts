@@ -7,6 +7,7 @@ import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.http.Field;
 import retrofit2.http.FormUrlEncoded;
+import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.Part;
@@ -95,7 +96,6 @@ public interface API {
             @Field("rating") float rating);
 
 
-
     @FormUrlEncoded
     @POST("registration/set_fcm_token/")
     Call<ServerResponse> sendFcmToken(
@@ -103,4 +103,19 @@ public interface API {
             @Field("token") String myToken,
             @Field("fcm_token") String fcmToken);
 
+    @FormUrlEncoded
+    @POST("payments/init/")
+    Call<ServerResponse> sendPayment(
+            @Field("cid") String myID,
+            @Field("token") String myToken,
+            @Field("oid") String orderId,
+            @Field("amount") String amount,
+            @Field("ipAddr") String ipAddr,
+            @Field("CardCryptogramPacket") String cardCryptogramPacket);
+
+    @FormUrlEncoded
+    @POST("payments/get_pk/")
+    Call<PKResponse> getPK(
+            @Field("cid") String myID,
+            @Field("token") String myToken);
 }

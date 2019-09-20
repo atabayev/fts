@@ -1,12 +1,21 @@
 package kz.ftsystem.yel.fts;
 
+import android.content.Context;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.Toast;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.ftsystem.yel.fts.R;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.URL;
 import java.util.HashMap;
 
 import kz.ftsystem.yel.fts.Interfaces.MyCallback;
@@ -24,6 +33,8 @@ public class SplashScreenActivity extends AppCompatActivity implements MyCallbac
 
 //        Intent intent = new Intent(this, RegistrationActivity.class);
 //        startActivity(intent);
+
+        new GetIp(this).execute();
 
         DB preferences = new DB(this);
         preferences.open();
@@ -91,5 +102,44 @@ public class SplashScreenActivity extends AppCompatActivity implements MyCallbac
                 finish();
                 break;
         }
+    }
+}
+
+class GetIp extends AsyncTask<Void, Void, String> {
+
+    Context context;
+
+    public GetIp(Context context) {
+        this.context = context;
+    }
+
+    @Override
+    protected String doInBackground(Void... voids) {
+        String res = "";
+        try {
+            URL url = new URL("http://icanhazip.com/");
+            HttpURLConnection con = (HttpURLConnection) url.openConnection();
+            if (con.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
+                res = in.readLine();
+                in.close();
+                //Если запрос выполнен удачно, читаем полученные данные и далее, делаем что-то
+            } else {
+                //Если запрос выполнен не удачно, делаем что-то другое
+            }
+        } catch (Exception e) {
+            Log.d(MyConstants.TAG, e.getMessage());
+        }
+        return res;
+    }
+
+
+    @Override
+    protected void onPostExecute(String s) {
+        super.onPostExecute(s);
+        DB preferences = new DB(context);
+        preferences.open();
+        preferences.setVariable(MyConstants.MY_IP_ADDR, s);
+        preferences.close();
     }
 }

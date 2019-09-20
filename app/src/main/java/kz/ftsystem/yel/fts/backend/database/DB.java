@@ -13,15 +13,15 @@ public class DB {
     private DBHelper dbHelper;
     private SQLiteDatabase db;
     private String table = MyConstants.MY_DB_TABLE_NAME;
-    private final Context context;
+    private final Context _context;
 
 
-    public DB(Context _context) {
-        context = _context;
+    public DB(Context context) {
+        _context = context;
     }
 
     public void open(){
-        dbHelper = new DBHelper(context);
+        dbHelper = new DBHelper(_context);
         db = dbHelper.getWritableDatabase();
     }
 

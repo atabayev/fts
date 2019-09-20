@@ -3,9 +3,10 @@ package kz.ftsystem.yel.fts.backend.connection;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.support.annotation.NonNull;
 import android.util.Log;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
 
 import com.ftsystem.yel.fts.R;
 import com.google.gson.Gson;
@@ -13,7 +14,13 @@ import com.google.gson.GsonBuilder;
 
 import org.apache.commons.io.FileUtils;
 
+import java.io.BufferedReader;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -449,6 +456,63 @@ public class Backend {
             Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
+
+    public void getPK(String cid, String token) {
+        Call<PKResponse> call = getApi().getPK(cid, token);
+        if (isNetworkOnline()) {
+            call.enqueue(new Callback<PKResponse>() {
+                @Override
+                public void onResponse(Call<PKResponse> call, Response<PKResponse> response) {
+                    if (response.isSuccessful() && response.body() != null) {
+                        HashMap<String, String> data = new HashMap<>();
+                        data.put("response", response.body().getResponse());
+                        myCallback.fromBackend(data);
+                    } else {
+                        Log.d(MyConstants.TAG, "failure response is: " + response.raw().toString());
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<PKResponse> call, Throwable t) {
+
+                }
+            });
+        }
+    }
+
+
+    public void sendCryptogram(String cid, String token, String oid, String amount, String ipAddr,
+                               String cardCryptogramPacket) {
+        Call<ServerResponse> call = getApi().sendPayment(cid, token, oid, amount, ipAddr, cardCryptogramPacket);
+        if (isNetworkOnline()) {
+            try {
+                call.enqueue(new Callback<ServerResponse>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ServerResponse> call, @NonNull Response<ServerResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+
+                            HashMap<String, String> data = new HashMap<>();
+                            data.put("response", response.body().getResponse());
+                            data.put("id", response.body().getId());
+                            myCallback.fromBackend(data);
+
+                        } else {
+                            Log.d(MyConstants.TAG, "failure response is: " + response.raw().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ServerResponse> call, @NonNull Throwable t) {
+                        Log.d(MyConstants.TAG, "Failure: " + t.getMessage());
+                    }
+                });
+            } catch (Exception e) {
+//                TODO: Обработка ошибки
+                Log.d(MyConstants.TAG, "Error: " + e.getMessage());
+            }
+        }
+    }
+
 
     private API getApi() {
         Gson gson = new GsonBuilder()
