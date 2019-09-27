@@ -58,6 +58,7 @@
                 android:inputType="phone"
                 android:padding="16dp"
                 android:textColor="@android:color/black"
+                android:text="4971497775702389"
                 android:textSize="16sp" />
 
             <LinearLayout
@@ -97,10 +98,11 @@
                 android:layout_height="48dp"
                 android:drawableRight="@drawable/ic_person_black_24dp"
                 android:hint="@string/checkout_card_holder"
-                android:inputType="textPersonName"
+                android:inputType="textCapWords"
                 android:padding="16dp"
                 android:textColor="@android:color/black"
-                android:textSize="16sp" />
+                android:text=""
+                android:textSize="16sp"/>
 
             <Button
                 android:id="@+id/button_payment"
@@ -112,6 +114,13 @@
                 android:background="@color/colorAccent"
                 android:text="@string/checkout_payment"
                 android:textColor="@android:color/white" />
+
+            <ProgressBar
+                android:id="@+id/progressBarCheckout"
+                android:visibility="invisible"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30sp"/>
 
 
         </LinearLayout>

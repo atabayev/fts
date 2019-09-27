@@ -3,15 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ftsystem.yel.fts">
 
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-
     <application
         android:name="kz.ftsystem.yel.fts.backend.MyApplication"
         android:allowBackup="true"
@@ -20,23 +11,16 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        tools:ignore="GoogleAppIndexingWarning"
-        android:usesCleartextTraffic="true">
+        android:usesCleartextTraffic="true"
+        tools:ignore="GoogleAppIndexingWarning">
+        <activity
+            android:name="kz.ftsystem.yel.fts.Pay3DSActivity"
+            android:label="@string/title_activity_pay3_ds"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity
             android:name="kz.ftsystem.yel.fts.CheckoutActivity"
             android:label="@string/title_activity_checkout"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_icon"
-            android:resource="@drawable/ic_stat_ic_notification" />
-        <!--
-             Set color used with incoming notification messages. This is used when no color is set for the incoming
-             notification message. See README(https://goo.gl/6BKBk7) for more.
-        -->
-        <meta-data
-            android:name="com.google.firebase.messaging.default_notification_color"
-            android:resource="@color/colorAccent" />
+            android:theme="@style/AppTheme.NoActionBar" />
 
         <activity
             android:name="kz.ftsystem.yel.fts.SplashScreenActivity"
@@ -47,10 +31,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <!--
+             Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more.
+        -->
         <activity
             android:name="kz.ftsystem.yel.fts.MainActivity"
             android:theme="@style/SplashTheme"
             android:windowSoftInputMode="stateHidden" />
+
         <activity
             android:name="kz.ftsystem.yel.fts.FinishActivity"
             android:theme="@style/SplashTheme" />
@@ -62,24 +51,30 @@
             android:theme="@style/SplashTheme"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name="kz.ftsystem.yel.fts.RegistrationActivity" />
-
-        <meta-data
-            android:name="preloaded_fonts"
-            android:resource="@array/preloaded_fonts" />
-
         <activity
             android:name="kz.ftsystem.yel.fts.OrderAcceptedActivity"
             android:theme="@style/SplashTheme" />
         <activity
             android:name="kz.ftsystem.yel.fts.CodeEntry2Activity"
             android:theme="@style/SplashTheme" />
+
         <activity
             android:name="kz.ftsystem.yel.fts.OrderResultActivity"
             android:label="@string/title_activity_order_result"
             android:theme="@style/AppTheme.NoActionBar" />
+
         <activity android:name="kz.ftsystem.yel.fts.WaitingOrderActivity" />
         <activity android:name="kz.ftsystem.yel.fts.WaitingTranslatorActivity" />
         <activity android:name="kz.ftsystem.yel.fts.TranslatingFinishedActivity" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@drawable/ic_stat_ic_notification" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
 
         <service android:name="kz.ftsystem.yel.fts.backend.services.MyFirebaseMessagingService">
             <intent-filter>
@@ -87,5 +82,14 @@
             </intent-filter>
         </service>
     </application>
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>

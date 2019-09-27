@@ -229,7 +229,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 select_language();
                 break;
             case R.id.btnImages:
-                select_images();
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    if (ActivityCompat.shouldShowRequestPermissionRationale(this, Manifest.permission.WRITE_EXTERNAL_STORAGE)){
+//TODO: асинхронно запустить объяснение
+                    } else {
+//TODO: объяснение не требуется, можно запустить запрос
+                        ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, MyConstants.MY_PERMISSION_STORAGE);
+                    }
+                } else {
+                    select_images();
+                }
                 break;
             case R.id.btnDocs:
                 // Выбор файла из памяти
@@ -246,6 +255,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
         }
     }
+
+
 
 
     @Override

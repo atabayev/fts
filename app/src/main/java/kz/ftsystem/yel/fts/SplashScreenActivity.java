@@ -31,9 +31,7 @@ public class SplashScreenActivity extends AppCompatActivity implements MyCallbac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_splash_screen);
 
-//        Intent intent = new Intent(this, RegistrationActivity.class);
-//        startActivity(intent);
-
+//        отправляет асинхронный запрос на ICanHazIp, чтоб узнать свой ip, необходимо передать IP для эквайринга
         new GetIp(this).execute();
 
         DB preferences = new DB(this);
@@ -64,8 +62,9 @@ public class SplashScreenActivity extends AppCompatActivity implements MyCallbac
             case "access":
                 DB preferences = new DB(this);
                 preferences.open();
-                preferences.setVariable(MyConstants.MY_ID, data.get("id"));
+                preferences.setVariable(MyConstants.MY_ID, data.get("cid"));
                 preferences.setVariable(MyConstants.MY_TOKEN, data.get("token"));
+                preferences.setVariable(MyConstants.ORDER_ID, data.get("oid"));
                 Intent intent = new Intent(this, MainActivity.class);
                 switch (data.get("status")) {
                     case "0":

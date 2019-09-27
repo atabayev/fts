@@ -114,13 +114,6 @@ public class RegistrationActivity extends AppCompatActivity implements MyCallbac
                     mCallbacks);
             isVerifying = true;
         }
-
-//        Backend backend = new Backend(this, this);
-//        backend.registration(
-//                name.getText().toString(),
-//                surname.getText().toString(),
-//                email.getText().toString(),
-//                phone.getText().toString());
     }
 
     @Override

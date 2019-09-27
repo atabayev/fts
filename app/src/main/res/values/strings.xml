@@ -133,5 +133,11 @@
     <string name="invalid_phone_number_format">Неверный формат номера телефона</string>
     <string name="rate_the_translate">Оцените пожалуйста перевод!</string>
     <string name="activation_code">Код с СМС</string>
+
+
+    <!--    Checkout    -->
     <string name="title_activity_checkout">CheckoutActivity</string>
+    <string name="error_send_data">"Ошибка при отправке данных"</string>
+    <string name="payment_declined">"Отказано в оплате банком"</string>
+    <string name="title_activity_pay3_ds">Pay3DSActivity</string>
 </resources>

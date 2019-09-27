@@ -14,13 +14,7 @@ import com.google.gson.GsonBuilder;
 
 import org.apache.commons.io.FileUtils;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
 import java.net.URLConnection;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -63,9 +57,10 @@ public class Backend {
 //                            myCallback.fromBackend(response.body().getResponse(), response.body().getId());
                             HashMap<String, String> data = new HashMap<>();
                             data.put("response", response.body().getResponse());
-                            data.put("id", response.body().getId());
+                            data.put("cid", response.body().getId());
                             data.put("token", response.body().getToken());
                             data.put("status", response.body().getStatus());
+                            data.put("oid", response.body().getOid());
                             myCallback.fromBackend(data);
                         } else {
                             Log.d(MyConstants.TAG, "failure response is: " + response.raw().toString());
@@ -98,7 +93,7 @@ public class Backend {
                         if (response.isSuccessful() && response.body() != null) {
                             HashMap<String, String> data = new HashMap<>();
                             data.put("response", response.body().getResponse());
-                            data.put("id", response.body().getId());
+                            data.put("cid", response.body().getId());
                             data.put("token", response.body().getToken());
                             myCallback.fromBackend(data);
                         } else {
@@ -396,8 +391,7 @@ public class Backend {
         return MultipartBody.Part.createFormData(partName, file.getName(), requestFile);
     }
 
-
-    public void sendingData(ArrayList<String> imgPaths, String lang, String pageCount) {
+    public void sendingData(String cid, String myToken, ArrayList<String> imgPaths, String lang, String pageCount) {
         Gson gson = new GsonBuilder()
                 .setLenient()
                 .create();
@@ -417,14 +411,11 @@ public class Backend {
             MultipartBody.Part body = prepareFilePart("files", imgPaths.get(i));
             files.add(body);
         }
-        DB preferences = new DB(context);
-        preferences.open();
-        RequestBody myId = createPartFromString(preferences.getVariable(MyConstants.MY_ID));
+        RequestBody myId = createPartFromString(cid);
         RequestBody language = createPartFromString(lang);
         RequestBody page_count = createPartFromString(pageCount);
         RequestBody urgency = createPartFromString("3");
-        RequestBody token = createPartFromString(preferences.getVariable(MyConstants.MY_TOKEN));
-        preferences.close();
+        RequestBody token = createPartFromString(myToken);
         Call<ServerResponse> call = api.newOrder(
                 myId,
                 language,
@@ -457,62 +448,35 @@ public class Backend {
         }
     }
 
-    public void getPK(String cid, String token) {
-        Call<PKResponse> call = getApi().getPK(cid, token);
+
+    public void paying(String amount, String currency, String ipAddress, String name, String cardCryptogramPacket,
+                       String accountId, String token, String invoiceId, String email) {
+        Call<PayResponse> call = getApi().paying(amount, currency, ipAddress, name, cardCryptogramPacket, accountId, token, invoiceId, email);
         if (isNetworkOnline()) {
-            call.enqueue(new Callback<PKResponse>() {
+            call.enqueue(new Callback<PayResponse>() {
                 @Override
-                public void onResponse(Call<PKResponse> call, Response<PKResponse> response) {
+                public void onResponse(Call<PayResponse> call, Response<PayResponse> response) {
                     if (response.isSuccessful() && response.body() != null) {
                         HashMap<String, String> data = new HashMap<>();
                         data.put("response", response.body().getResponse());
+                        data.put("md", response.body().getMd());
+                        data.put("paReq", response.body().getPaReq());
+                        data.put("acsUrl", response.body().getAcsUrl());
                         myCallback.fromBackend(data);
+                        Log.d(MyConstants.TAG, "3ds");
                     } else {
-                        Log.d(MyConstants.TAG, "failure response is: " + response.raw().toString());
+                        Log.d(MyConstants.TAG, "ok");
                     }
                 }
 
                 @Override
-                public void onFailure(Call<PKResponse> call, Throwable t) {
-
+                public void onFailure(Call<PayResponse> call, Throwable t) {
+                    Log.d(MyConstants.TAG, "ok");
                 }
             });
         }
+
     }
-
-
-    public void sendCryptogram(String cid, String token, String oid, String amount, String ipAddr,
-                               String cardCryptogramPacket) {
-        Call<ServerResponse> call = getApi().sendPayment(cid, token, oid, amount, ipAddr, cardCryptogramPacket);
-        if (isNetworkOnline()) {
-            try {
-                call.enqueue(new Callback<ServerResponse>() {
-                    @Override
-                    public void onResponse(@NonNull Call<ServerResponse> call, @NonNull Response<ServerResponse> response) {
-                        if (response.isSuccessful() && response.body() != null) {
-
-                            HashMap<String, String> data = new HashMap<>();
-                            data.put("response", response.body().getResponse());
-                            data.put("id", response.body().getId());
-                            myCallback.fromBackend(data);
-
-                        } else {
-                            Log.d(MyConstants.TAG, "failure response is: " + response.raw().toString());
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(@NonNull Call<ServerResponse> call, @NonNull Throwable t) {
-                        Log.d(MyConstants.TAG, "Failure: " + t.getMessage());
-                    }
-                });
-            } catch (Exception e) {
-//                TODO: Обработка ошибки
-                Log.d(MyConstants.TAG, "Error: " + e.getMessage());
-            }
-        }
-    }
-
 
     private API getApi() {
         Gson gson = new GsonBuilder()

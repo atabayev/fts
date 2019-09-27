@@ -4,15 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ftsystem.yel.fts.R;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
-import androidx.annotation.StringRes;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.text.Editable;
-import android.view.View;
+import android.util.Log;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -66,12 +64,19 @@ public class CheckoutActivity extends AppCompatActivity implements ThreeDSDialog
     @BindView(R.id.edit_card_cvc)
     TextView etCardCVC;
 
+    @BindView(R.id.progressBarCheckout)
+    ProgressBar progressBar;
 
     String myId;
     String myToken;
+    String myEmail;
     String orderId;
     String amount;
     String ipAddr;
+    String cardCryptogram = null;
+    String cardHolderName;
+    String token;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -87,6 +92,8 @@ public class CheckoutActivity extends AppCompatActivity implements ThreeDSDialog
         myToken = preferences.getVariable(MyConstants.MY_TOKEN);
         orderId = preferences.getVariable(MyConstants.ORDER_ID);
         ipAddr = preferences.getVariable(MyConstants.MY_IP_ADDR);
+        myEmail = preferences.getVariable(MyConstants.MY_EMAIL);
+        token = preferences.getVariable(MyConstants.MY_TOKEN);
         preferences.close();
 
 
@@ -118,12 +125,18 @@ public class CheckoutActivity extends AppCompatActivity implements ThreeDSDialog
         }
     }
 
+    @OnTextChanged(value = R.id.edit_card_holder_name, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
+    protected void onCardHolderName(Editable s) {
+
+    }
+
     @OnClick(R.id.button_payment)
-    void onPaymentClick(){
+    void onPaymentClick() {
+        progressBar.setVisibility(ProgressBar.VISIBLE);
         String cardNumber = etCardNumber.getText().toString().replace(" ", "");
         String cardDate = etCardDate.getText().toString().replace("/", "");
         String cardCVC = etCardCVC.getText().toString();
-        String cardHolderName = etCardHolderName.getText().toString();
+        cardHolderName = etCardHolderName.getText().toString();
 
         // Проверям номер карты.
         if (!CPCard.isValidNumber(cardNumber)) {
@@ -153,44 +166,30 @@ public class CheckoutActivity extends AppCompatActivity implements ThreeDSDialog
         String cardType = card.getType();
 
         // Создаем криптограмму карточных данных
-        String cardCryptogram = null;
         try {
             // Чтобы создать криптограмму необходим PublicID (его можно посмотреть в личном кабинете)
             cardCryptogram = card.cardCryptogram(MyConstants.MERCHANT_PUBLIC_ID);
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (NoSuchPaddingException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (BadPaddingException e) {
-            e.printStackTrace();
-        } catch (IllegalBlockSizeException e) {
-            e.printStackTrace();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (StringIndexOutOfBoundsException e) {
+        } catch (UnsupportedEncodingException | StringIndexOutOfBoundsException | InvalidKeyException | IllegalBlockSizeException | BadPaddingException | NoSuchAlgorithmException | NoSuchPaddingException e) {
             e.printStackTrace();
         }
 
         if (cardCryptogram != null) {
             Backend backend = new Backend(this, this);
-            backend.getPK(myId, myToken);
-//            Backend backend = new Backend(this, this);
-//            backend.sendCryptogram(myId, myToken, orderId, amount, ipAddr, cardCryptogram);
-//            TODO: Отправка криптограммы на сервер
-//            TODO: После подтверждения оплаты, вызать из backend "makeAnOrder"
+            backend.paying(amount, "KZT", ipAddr, cardHolderName, cardCryptogram, myId,
+                    token, orderId, myEmail);
         }
     }
 
     @Override
     public void onAuthorizationCompleted(String md, String paRes) {
-
+        Backend backend = new Backend(this, this);
+        backend.makeAnOrder(myId, myToken, orderId);
+        Log.d(MyConstants.TAG, "COMPLETED");
     }
 
     @Override
     public void onAuthorizationFailed(String html) {
-
+        Log.d(MyConstants.TAG, "FAILED");
     }
 
     private boolean isInputCorrect(Editable s, int size, int dividerPosition, char divider) {
@@ -235,15 +234,50 @@ public class CheckoutActivity extends AppCompatActivity implements ThreeDSDialog
 
     @Override
     public void fromBackend(HashMap<String, String> data) {
+        progressBar.setVisibility(ProgressBar.INVISIBLE);
         switch (data.get("response")) {
-            case "pk_ok":
-//                TODO: Отправка криптограммы на CP
-            break;
+            case "3ds":
+                ThreeDsDialogFragment.newInstance(data.get("acsUrl"),
+                        data.get("md"),
+                        data.get("paReq"))
+                        .show(getFragmentManager(), "3DS");
+                break;
+            case "send_error":
+                Toast.makeText(this, R.string.error_send_data, Toast.LENGTH_SHORT).show();
+                break;
             case "denied":
                 Toast.makeText(this, R.string.ora_access_denied, Toast.LENGTH_SHORT).show();
                 break;
+            case "field_error":
             case "error_f":
                 Toast.makeText(this, R.string.error_send, Toast.LENGTH_SHORT).show();
+                break;
+            case "completed":
+                Backend backend = new Backend(this, this);
+                backend.makeAnOrder(myId, token, orderId);
+                break;
+            case "declined":
+                Toast.makeText(this, R.string.payment_declined, Toast.LENGTH_SHORT).show();
+                break;
+            case "pay_error":
+                Toast.makeText(this, "Ошибка: " + data.get("message"), Toast.LENGTH_LONG).show();
+                break;
+            case "unknown_error":
+                Toast.makeText(this, R.string.error_unknown, Toast.LENGTH_LONG).show();
+                break;
+//          Callback от makeAnOrder
+            case "error_no_order":
+                Toast.makeText(this, R.string.ora_error_order_id, Toast.LENGTH_SHORT).show();
+                break;
+            case "ok":
+                DB preferences = new DB(this);
+                preferences.open();
+                preferences.setVariable(MyConstants.IS_ORDERED, "0");
+                preferences.setVariable(MyConstants.MAKE_ORDER, "1");
+                preferences.close();
+                Intent intent = new Intent(this, WaitingTranslatorActivity.class);
+                startActivity(intent);
+                finish();
                 break;
             default:
                 Toast.makeText(this, R.string.error_unknown, Toast.LENGTH_SHORT).show();

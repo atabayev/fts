@@ -166,7 +166,12 @@ public class FinishActivity extends AppCompatActivity implements MyCallback {
         Backend backend = new Backend(this, this);
         progressBar.setVisibility(ProgressBar.VISIBLE);
         tvPgBar.setVisibility(TextView.VISIBLE);
-        backend.sendingData(imgPaths, lang, comment);
+        DB preferences = new DB(this);
+        preferences.open();
+        String myId = preferences.getVariable(MyConstants.MY_ID);
+        String myToken = preferences.getVariable(MyConstants.MY_TOKEN);
+        preferences.close();
+        backend.sendingData(myId, myToken, imgPaths, lang, comment);
         btnOrder.setEnabled(false);
     }
 

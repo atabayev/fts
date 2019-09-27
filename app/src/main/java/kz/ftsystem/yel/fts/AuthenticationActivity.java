@@ -109,7 +109,7 @@ public class AuthenticationActivity extends AppCompatActivity implements MyCallb
                 } else {
                     preferences.setVariable(MyConstants.AUTO_ENTER, "0");
                 }
-                preferences.setVariable(MyConstants.MY_PHONE_NUM, phoneNum.getText().toString());
+                preferences.setVariable(MyConstants.MY_PHONE_NUM, editedPhoneNumber);
                 preferences.close();
                 Backend backend = new Backend(this, this);
                 backend.authentication(editedPhoneNumber);
@@ -192,8 +192,9 @@ public class AuthenticationActivity extends AppCompatActivity implements MyCallb
             case "access":
                 DB preferences = new DB(this);
                 preferences.open();
-                preferences.setVariable(MyConstants.MY_ID, data.get("id"));
+                preferences.setVariable(MyConstants.MY_ID, data.get("cid"));
                 preferences.setVariable(MyConstants.MY_TOKEN, data.get("token"));
+                preferences.setVariable(MyConstants.ORDER_ID, data.get("oid"));
                 Intent intent = new Intent(this, MainActivity.class);
                 switch (data.get("status")) {
                     case "0":
@@ -204,14 +205,14 @@ public class AuthenticationActivity extends AppCompatActivity implements MyCallb
                         break;
                     case "2":
                         intent = new Intent(this, OrderResultActivity.class);
-                        if (!preferences.getVariable("orderId").equals("0")) {
-                            intent.putExtra("orderId", preferences.getVariable("orderId"));
-                            intent.putExtra("language", preferences.getVariable("language"));
-                            intent.putExtra("pagesCount", preferences.getVariable("pagesCount"));
-                            intent.putExtra("price", preferences.getVariable("price"));
-                            intent.putExtra("dateEnd", preferences.getVariable("dateEnd"));
-                            intent.putExtra("urgency", preferences.getVariable("urgency"));
-                        }
+//                        if (!preferences.getVariable("orderId").equals("0")) {
+//                            intent.putExtra("orderId", preferences.getVariable("orderId"));
+//                            intent.putExtra("language", preferences.getVariable("language"));
+//                            intent.putExtra("pagesCount", preferences.getVariable("pagesCount"));
+//                            intent.putExtra("price", preferences.getVariable("price"));
+//                            intent.putExtra("dateEnd", preferences.getVariable("dateEnd"));
+//                            intent.putExtra("urgency", preferences.getVariable("urgency"));
+//                        }
                         break;
                     case "3":
                         intent = new Intent(this, WaitingTranslatorActivity.class);

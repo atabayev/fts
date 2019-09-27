@@ -64,10 +64,8 @@ public class CodeEntry2Activity extends AppCompatActivity implements MyCallback 
                 if (task.isSuccessful()) {
                     FirebaseUser user = task.getResult().getUser();
                     Log.d(MyConstants.TAG, user.getPhoneNumber());
-
                     Backend backend = new Backend(CodeEntry2Activity.this, CodeEntry2Activity.this);
                     backend.registration(name, surname, email, user.getPhoneNumber());
-                    // TODO: Дальше идет старт чего-то
                 } else {
                     Log.w(MyConstants.TAG, "signInWithCredential:failure", task.getException());
                     if (task.getException() instanceof FirebaseAuthInvalidCredentialsException) {
@@ -95,8 +93,9 @@ public class CodeEntry2Activity extends AppCompatActivity implements MyCallback 
             case "ok":
                 DB preferences = new DB(this);
                 preferences.open();
-                preferences.setVariable(MyConstants.MY_ID, data.get("id"));
+                preferences.setVariable(MyConstants.MY_ID, data.get("cid"));
                 preferences.setVariable(MyConstants.MY_TOKEN, data.get("token"));
+                preferences.setVariable(MyConstants.MY_EMAIL, email);
                 preferences.close();
                 Intent intent = new Intent(this, MainActivity.class);
                 this.startActivity(intent);

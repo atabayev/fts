@@ -8,15 +8,30 @@ public class ServerResponse {
     @SerializedName("response")
     @Expose
     private String response;
+
     @SerializedName("id")
     @Expose
     private String id;
+
     @SerializedName("token")
     @Expose
     private String token;
+
     @SerializedName("status")
     @Expose
     private String status;
+
+    @SerializedName("oid")
+    @Expose
+    private String oid;
+
+    public String getOid() {
+        return oid;
+    }
+
+    public void setOid(String oid) {
+        this.oid = oid;
+    }
 
     public String getId() {
         return id;

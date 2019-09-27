@@ -103,19 +103,17 @@ public interface API {
             @Field("token") String myToken,
             @Field("fcm_token") String fcmToken);
 
-    @FormUrlEncoded
-    @POST("payments/init/")
-    Call<ServerResponse> sendPayment(
-            @Field("cid") String myID,
-            @Field("token") String myToken,
-            @Field("oid") String orderId,
-            @Field("amount") String amount,
-            @Field("ipAddr") String ipAddr,
-            @Field("CardCryptogramPacket") String cardCryptogramPacket);
 
     @FormUrlEncoded
-    @POST("payments/get_pk/")
-    Call<PKResponse> getPK(
-            @Field("cid") String myID,
-            @Field("token") String myToken);
+    @POST("payment/paying/")
+    Call<PayResponse> paying(
+            @Field("amount") String amount,
+            @Field("currency") String currency,
+            @Field("ipAddress") String ipAddress,
+            @Field("name") String name,
+            @Field("cardCryptogramPacket") String cardCryptogramPacket,
+            @Field("accountId") String accountId,
+            @Field("token") String token,
+            @Field("invoiceId") String invoiceId,
+            @Field("email") String email);
 }
