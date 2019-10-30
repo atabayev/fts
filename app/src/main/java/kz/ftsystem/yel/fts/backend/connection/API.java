@@ -116,4 +116,18 @@ public interface API {
             @Field("token") String token,
             @Field("invoiceId") String invoiceId,
             @Field("email") String email);
+
+    @FormUrlEncoded
+    @POST("registration/pay_phys/")
+    Call<ServerResponse> payPhysycal(
+            @Field("cid") String myId,
+            @Field("token") String myToken,
+            @Field("oid") String orderId);
+
+    @FormUrlEncoded
+    @POST("registration/pay_by_order/")
+    Call<ServerResponse> payByOrder(
+            @Field("cid") String myId,
+            @Field("token") String myToken,
+            @Field("oid") String orderId);
 }

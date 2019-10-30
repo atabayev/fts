@@ -213,6 +213,73 @@ public class Backend {
         }
     }
 
+    public void payPhysycal(String myId, String myToken, String orderId) {
+        Call<ServerResponse> call = getApi().payPhysycal(myId, myToken, orderId);
+        if (isNetworkOnline()) {
+            try {
+                call.enqueue(new Callback<ServerResponse>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ServerResponse> call, @NonNull Response<ServerResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            HashMap<String, String> data = new HashMap<>();
+                            data.put("response", response.body().getResponse());
+//                            если ответ "ок", то сервер дополнительно передает deadline оплаты (под название "статус")
+                            if (response.body().getResponse().equals("ok")) {
+                                data.put("deadline", response.body().getStatus());
+                            }
+                            myCallback.fromBackend(data);
+                        } else {
+                            Log.d(MyConstants.TAG, "failure response is: " + response.raw().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ServerResponse> call, @NonNull Throwable t) {
+                        Log.d(MyConstants.TAG, "Error: " + t.getMessage());
+                    }
+                });
+            } catch (Exception e) {
+                Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(context, context.getResources().getString(R.string.inet_off), Toast.LENGTH_LONG).show();
+        }
+    }
+
+
+    public void payByOrder(String myId, String myToken, String orderId) {
+        Call<ServerResponse> call = getApi().payByOrder(myId, myToken, orderId);
+        if (isNetworkOnline()) {
+            try {
+                call.enqueue(new Callback<ServerResponse>() {
+                    @Override
+                    public void onResponse(@NonNull Call<ServerResponse> call, @NonNull Response<ServerResponse> response) {
+                        if (response.isSuccessful() && response.body() != null) {
+                            HashMap<String, String> data = new HashMap<>();
+                            data.put("response", response.body().getResponse());
+//                            если ответ "ок", то сервер дополнительно передает deadline оплаты (под название "статус")
+                            if (response.body().getResponse().equals("ok")) {
+                                data.put("deadline", response.body().getStatus());
+                            }
+                            myCallback.fromBackend(data);
+                        } else {
+                            Log.d(MyConstants.TAG, "failure response is: " + response.raw().toString());
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(@NonNull Call<ServerResponse> call, @NonNull Throwable t) {
+                        Log.d(MyConstants.TAG, "Error: " + t.getMessage());
+                    }
+                });
+            } catch (Exception e) {
+                Toast.makeText(context, "Error: " + e.getMessage(), Toast.LENGTH_LONG).show();
+            }
+        } else {
+            Toast.makeText(context, context.getResources().getString(R.string.inet_off), Toast.LENGTH_LONG).show();
+        }
+    }
+
 
     public void cancelOrder(String myId, String myToken, String orderId) {
         Call<ServerResponse> call = getApi().cancelAnOrder(myId, myToken, orderId);

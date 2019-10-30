@@ -124,6 +124,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "567222563883-ii380egmhu7ipv0bqrcfmtlob4kg7qn2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "kz.ftsystem.yel.ftst",
+            "certificate_hash": "ec4fdab2d0aa14169e5f002ff8da83ee71878f11"
+          }
+        },
+        {
           "client_id": "567222563883-5li9sgjaoe80dm8itar6v5f62cuvo9cq.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {

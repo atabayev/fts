@@ -1,5 +1,6 @@
 package kz.ftsystem.yel.fts;
 
+import android.app.ActionBar;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,6 +11,8 @@ import androidx.appcompat.widget.Toolbar;
 
 import android.text.Editable;
 import android.util.Log;
+import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,6 +70,12 @@ public class CheckoutActivity extends AppCompatActivity implements ThreeDSDialog
     @BindView(R.id.progressBarCheckout)
     ProgressBar progressBar;
 
+    @BindView(R.id.text_total)
+    TextView total;
+
+    @BindView(R.id.coBtnBack)
+    ImageButton btnBack;
+
     String myId;
     String myToken;
     String myEmail;
@@ -82,8 +91,7 @@ public class CheckoutActivity extends AppCompatActivity implements ThreeDSDialog
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_checkout);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
         ButterKnife.bind(this);
 
         DB preferences = new DB(this);
@@ -94,14 +102,26 @@ public class CheckoutActivity extends AppCompatActivity implements ThreeDSDialog
         ipAddr = preferences.getVariable(MyConstants.MY_IP_ADDR);
         myEmail = preferences.getVariable(MyConstants.MY_EMAIL);
         token = preferences.getVariable(MyConstants.MY_TOKEN);
+        amount = preferences.getVariable(MyConstants.MY_ORDER_AMOUNT);
         preferences.close();
 
 
-        if (getIntent().hasExtra("amount")) {
-            amount = getIntent().getStringExtra("amount");
-        } else {
-            amount = "error";
-        }
+//        if (getIntent().hasExtra("amount")) {
+//            amount = getIntent().getStringExtra("amount");
+//        } else {
+//            amount = "error";
+//        }
+
+        String totalText = total.getText().toString() + amount;
+        total.setText(totalText);
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(getApplicationContext(), SelectPayMethodActivity.class);
+        startActivityForResult(intent, 0);
+        return true;
     }
 
     @OnTextChanged(value = R.id.edit_card_number, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
@@ -128,6 +148,11 @@ public class CheckoutActivity extends AppCompatActivity implements ThreeDSDialog
     @OnTextChanged(value = R.id.edit_card_holder_name, callback = OnTextChanged.Callback.AFTER_TEXT_CHANGED)
     protected void onCardHolderName(Editable s) {
 
+    }
+
+    @OnClick(R.id.coBtnBack)
+    void onBtnBackCkick() {
+        finish();
     }
 
     @OnClick(R.id.button_payment)

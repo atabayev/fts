@@ -106,9 +106,9 @@
     <string name="ora_access_denied">Доступ запрещен</string>
     <string name="ora_error_order_id">Ошибка. Неправильный ID заказа</string>
     <string name="error_unknown">Неизвестная ошибка</string>
-    <string name="awo_title_translating">Ваш заказ в процессе перевода...</string>
+    <string name="awo_title_translating">Ваш заказ в процессе перевода…</string>
     <string name="ora_order_canceled">Заказ отменен.</string>
-    <string name="oaa_searching_translator">Ведется поиск переводчика для заказа...</string>
+    <string name="oaa_searching_translator">Ведется поиск переводчика для заказа…</string>
     <string name="tf_order_completed">Ваш заказ переведен и отправлен на указанную Вами почту</string>
     <string name="tf_ok">Хорошо, спасибо!</string>
     <string name="error_server_not_available">Сервер не доступен</string>
@@ -140,4 +140,15 @@
     <string name="error_send_data">"Ошибка при отправке данных"</string>
     <string name="payment_declined">"Отказано в оплате банком"</string>
     <string name="title_activity_pay3_ds">Pay3DSActivity</string>
+
+    <!--  Select pay Method  -->
+    <string name="pay_by_card"> Оплата картой </string>
+    <string name="pay_by_physical"> Оплата на месте </string>
+    <string name="pay_by_order"> Оплата банковским переводом </string>
+    <string name="select_pay_method">Пожалуиста, выберите способ оплаты</string>
+
+    <!--  PayPhysical  -->
+    <string name="info_about_how_to_pay_by_phys"> Для завершения оформления заказа, необходимо оплатить заказ по адресу: ул.Богенбай батыра 150, БЦ "Кадам Инвест" эт.7, офис 75 </string>
+    <string name="Confirm">Подтвердить</string>
+    <string name="pay_by_order_message">Для оформления заказа свяжитесь с менеджером по тел. 292 00 18, +7 (771) 300 21 72 в течении суток</string>
 </resources>

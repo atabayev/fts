@@ -64,7 +64,6 @@ public class WaitingTranslatorActivity extends AppCompatActivity implements Swip
 //        TextView tvDateEnd = findViewById(R.id.wtaDateEndText);
 //        TextView tvUrgency = findViewById(R.id.wtaUrgencyText);
 
-//        TODO: Брать данные заказа с сервера
         getOrdersField();
 
 //        DB preferences = new DB(this);

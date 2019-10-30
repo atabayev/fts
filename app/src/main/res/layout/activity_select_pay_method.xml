@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/background"
+    tools:context="kz.ftsystem.yel.fts.SelectPayMethodActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                style="@style/TextStyle"
+                android:gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20sp"
+                android:layout_marginTop="@dimen/dim_10sp"
+                android:layout_marginBottom="@dimen/dim_10sp"
+                android:text="@string/select_pay_method"/>
+
+            <Button
+                android:id="@+id/spmPayByCard"
+                style="@style/ButtonStyle"
+                android:layout_marginStart="30sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginEnd="30sp"
+                android:layout_marginBottom="15sp"
+                android:text="@string/pay_by_card"/>
+
+            <Button
+                android:id="@+id/spmPayByPhys"
+                style="@style/ButtonStyle"
+                android:layout_marginStart="30sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginEnd="30sp"
+                android:layout_marginBottom="15sp"
+                android:text="@string/pay_by_physical" />
+
+            <Button
+                android:id="@+id/spmPayByOrder"
+                style="@style/ButtonStyle"
+                android:layout_marginStart="30sp"
+                android:layout_marginTop="15sp"
+                android:layout_marginEnd="30sp"
+                android:layout_marginBottom="15sp"
+                android:text="@string/pay_by_order"/>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

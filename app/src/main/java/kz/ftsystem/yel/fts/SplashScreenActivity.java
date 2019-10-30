@@ -76,6 +76,12 @@ public class SplashScreenActivity extends AppCompatActivity implements MyCallbac
                     case "2":
                         intent = new Intent(this, OrderResultActivity.class);
                         break;
+                    case "25":
+                        intent = new Intent(this, WaitPayActivity.class);
+                        break;
+                    case "26":
+                        intent = new Intent(this, WaitCallActivity.class);
+                        break;
                     case "3":
                         intent = new Intent(this, WaitingTranslatorActivity.class);
                         break;

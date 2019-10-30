@@ -29,36 +29,67 @@ public class WaitingOrderActivity extends AppCompatActivity implements SwipeRefr
     @BindView(R.id.woa_swipe_container)
     SwipeRefreshLayout swipeRefreshLayout;
 
+    @BindView(R.id.oraIdText)
+    TextView tvId;
+
+    @BindView(R.id.oraLangText)
+    TextView tvLang;
+
+    @BindView(R.id.oraPagesCountText)
+    TextView tvPageCount;
+
+    @BindView(R.id.oraPriceText)
+    TextView tvPrice;
+
+    @BindView(R.id.oraDateEndText)
+    TextView tvDateEnd;
+
+    @BindView(R.id.oraUrgencyText)
+    TextView tvUrgency;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_waiting_order);
 
         ButterKnife.bind(this);
+
+        getOrderParams();
 //        swipeRefreshLayout = findViewById(R.id.woa_swipe_container);
 
-        TextView tvId = findViewById(R.id.oraIdText);
-        TextView tvLang = findViewById(R.id.oraLangText);
-        TextView tvPageCount = findViewById(R.id.oraPagesCountText);
-        TextView tvPrice = findViewById(R.id.oraPriceText);
-        TextView tvDateEnd = findViewById(R.id.oraDateEndText);
-        TextView tvUrgency = findViewById(R.id.oraUrgencyText);
+//        TextView tvId = findViewById(R.id.oraIdText);
+//        TextView tvLang = findViewById(R.id.oraLangText);
+//        TextView tvPageCount = findViewById(R.id.oraPagesCountText);
+//        TextView tvPrice = findViewById(R.id.oraPriceText);
+//        TextView tvDateEnd = findViewById(R.id.oraDateEndText);
+//        TextView tvUrgency = findViewById(R.id.oraUrgencyText);
 
-        DB preferences = new DB(this);
-        preferences.open();
-
-        tvId.setText(preferences.getVariable(MyConstants.MY_ORDER_ID));
-        tvLang.setText(preferences.getVariable(MyConstants.MY_ORDER_LANG));
-        tvPageCount.setText(preferences.getVariable(MyConstants.MY_ORDER_PAGE_COUNT));
-        tvPrice.setText(preferences.getVariable(MyConstants.MY_ORDER_PRICE));
-        tvDateEnd.setText(preferences.getVariable(MyConstants.MY_ORDER_DATE_END));
-        tvUrgency.setText(preferences.getVariable(MyConstants.MY_ORDER_URGENCY));
+//        DB preferences = new DB(this);
+//        preferences.open();
+//
+//        tvId.setText(preferences.getVariable(MyConstants.MY_ORDER_ID));
+//        tvLang.setText(preferences.getVariable(MyConstants.MY_ORDER_LANG));
+//        tvPageCount.setText(preferences.getVariable(MyConstants.MY_ORDER_PAGE_COUNT));
+//        tvPrice.setText(preferences.getVariable(MyConstants.MY_ORDER_PRICE));
+//        tvDateEnd.setText(preferences.getVariable(MyConstants.MY_ORDER_DATE_END));
+//        tvUrgency.setText(preferences.getVariable(MyConstants.MY_ORDER_URGENCY));
 
         swipeRefreshLayout.setOnRefreshListener(this);
         swipeRefreshLayout.setColorSchemeResources(android.R.color.holo_blue_bright,
                 android.R.color.holo_green_light,
                 android.R.color.holo_orange_light,
                 android.R.color.holo_red_light);
+    }
+
+    private void getOrderParams() {
+        DB preferences = new DB(this);
+        preferences.open();
+        String myId = preferences.getVariable(MyConstants.MY_ID);
+        String myToken = preferences.getVariable(MyConstants.MY_TOKEN);
+        String orderId = preferences.getVariable(MyConstants.ORDER_ID);
+        preferences.close();
+        Backend backend = new Backend(this, this);
+        backend.getInfoAboutMyOrder(myId, myToken, orderId);
     }
 
     @Override
@@ -93,6 +124,14 @@ public class WaitingOrderActivity extends AppCompatActivity implements SwipeRefr
     public void fromBackend(HashMap<String, String> data) {
         swipeRefreshLayout.setRefreshing(false);
         switch (data.get("response")) {
+            case "ready":
+                tvId.setText(data.get("orderId"));
+                tvLang.setText(data.get("language"));
+                tvPageCount.setText(data.get("pagesCount"));
+                tvPrice.setText(data.get("price"));
+                tvDateEnd.setText(data.get("dateEnd"));
+                tvUrgency.setText(data.get("urgency"));
+                break;
             case "yes":
 //                Toast.makeText(this, "Ваш заказ переведен и отправлен на Вашу почту", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, TranslatingFinishedActivity.class);

@@ -84,8 +84,12 @@ public class OrderResultActivity extends AppCompatActivity implements MyCallback
         preferences.close();
         switch (view.getId()) {
             case R.id.oraBtnAccept:
-                Intent intent = new Intent(this, CheckoutActivity.class);
-                intent.putExtra("amount", tvPrice.getText().toString());
+                preferences.open();
+                preferences.setVariable(MyConstants.MY_ORDER_AMOUNT, tvPrice.getText().toString());
+                preferences.close();
+//                Intent intent = new Intent(this, CheckoutActivity.class);
+                Intent intent = new Intent(this, SelectPayMethodActivity.class);
+//                intent.putExtra("amount", tvPrice.getText().toString());
                 startActivity(intent);
                 finish();
                 break;

@@ -3,6 +3,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.ftsystem.yel.fts">
 
+    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.READ_PROFILE" />
+    <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
     <application
         android:name="kz.ftsystem.yel.fts.backend.MyApplication"
         android:allowBackup="true"
@@ -13,15 +22,25 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         tools:ignore="GoogleAppIndexingWarning">
+        <activity android:name="kz.ftsystem.yel.fts.WaitCallActivity"></activity>
+        <activity
+            android:name="kz.ftsystem.yel.fts.PayByOrderActivity"
+            android:parentActivityName="kz.ftsystem.yel.fts.SelectPayMethodActivity" />
+        <activity android:name="kz.ftsystem.yel.fts.WaitPayActivity" />
+        <activity
+            android:name="kz.ftsystem.yel.fts.PayPhysicalActivity"
+            android:parentActivityName="kz.ftsystem.yel.fts.SelectPayMethodActivity"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name="kz.ftsystem.yel.fts.SelectPayMethodActivity" />
         <activity
             android:name="kz.ftsystem.yel.fts.Pay3DSActivity"
             android:label="@string/title_activity_pay3_ds"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name="kz.ftsystem.yel.fts.CheckoutActivity"
             android:label="@string/title_activity_checkout"
+            android:parentActivityName="kz.ftsystem.yel.fts.SelectPayMethodActivity"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity
             android:name="kz.ftsystem.yel.fts.SplashScreenActivity"
             android:theme="@style/SplashTheme">
@@ -39,7 +58,6 @@
             android:name="kz.ftsystem.yel.fts.MainActivity"
             android:theme="@style/SplashTheme"
             android:windowSoftInputMode="stateHidden" />
-
         <activity
             android:name="kz.ftsystem.yel.fts.FinishActivity"
             android:theme="@style/SplashTheme" />
@@ -57,15 +75,14 @@
         <activity
             android:name="kz.ftsystem.yel.fts.CodeEntry2Activity"
             android:theme="@style/SplashTheme" />
-
         <activity
             android:name="kz.ftsystem.yel.fts.OrderResultActivity"
             android:label="@string/title_activity_order_result"
             android:theme="@style/AppTheme.NoActionBar" />
-
         <activity android:name="kz.ftsystem.yel.fts.WaitingOrderActivity" />
         <activity android:name="kz.ftsystem.yel.fts.WaitingTranslatorActivity" />
         <activity android:name="kz.ftsystem.yel.fts.TranslatingFinishedActivity" />
+
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/ic_stat_ic_notification" />
@@ -82,14 +99,5 @@
             </intent-filter>
         </service>
     </application>
-    <uses-permission android:name="android.permission.READ_PHONE_NUMBERS" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
-    <uses-permission android:name="android.permission.READ_PROFILE" />
-    <uses-permission android:name="android.permission.READ_CONTACTS" />
-
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
 </manifest>
